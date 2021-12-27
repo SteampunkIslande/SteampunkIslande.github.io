@@ -38,4 +38,4 @@ DEFAULT_PAGINATION = 10
 
 OUTPUT_PATH = "docs/"
 
-SITEURL = "https://steampunkislande.github.io/"
+SITEURL = "https://steampunkislande.github.io/blog/"
