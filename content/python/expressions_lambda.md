@@ -1,11 +1,10 @@
 Title: Les lambda expressions en python
 Date: 2021-12-25 23:00
-Modified: 2021-12-26 10:00
+Modified: 2021-12-28 01:00
 Category: Python
 Tags: lambda, common issues
 Slug: les-lambda-expressions-en-python
 Authors: Charles Monod-Broca
-Summary: Tutoriel en python sur les lambda expressions et les problèmes courants
 
 # Les lambda expressions en python
 
