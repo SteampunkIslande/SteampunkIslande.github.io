@@ -1,3 +1,8 @@
+Disclaimer: This theme is not mine! I only copy-pasted it because I felt like forking it would have added too much overhead for such simple modifications...
+So this is the [original link](https://github.com/gilsondev/pelican-clean-blog/tree/master)
+
+However some files are personnal work (as of now, two photos)
+
 # Pelican Clean Blog Theme
 
 Theme based in [Clean Blog layout](https://github.com/BlackrockDigital/startbootstrap-clean-blog).
