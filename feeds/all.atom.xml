@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Let's tame that python together</title><link href="https://steampunkislande.github.io/" rel="alternate"></link><link href="https://steampunkislande.github.io/feeds/all.atom.xml" rel="self"></link><id>https://steampunkislande.github.io/</id><updated>2021-12-26T10:00:00+01:00</updated><entry><title>Les lambda expressions en python</title><link href="https://steampunkislande.github.io/les-lambda-expressions-en-python.html" rel="alternate"></link><published>2021-12-25T23:00:00+01:00</published><updated>2021-12-26T10:00:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-25:/les-lambda-expressions-en-python.html</id><summary type="html">&lt;p&gt;Tutoriel en python sur les lambda expressions et les problèmes courants&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Les lambda expressions en python&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Let's tame that python together</title><link href="https://steampunkislande.github.io/" rel="alternate"></link><link href="https://steampunkislande.github.io/feeds/all.atom.xml" rel="self"></link><id>https://steampunkislande.github.io/</id><updated>2021-12-30T00:00:00+01:00</updated><entry><title>Les expressions régulières (regex)</title><link href="https://steampunkislande.github.io/les-expressions-regulieres.html" rel="alternate"></link><published>2021-12-30T00:00:00+01:00</published><updated>2021-12-30T00:00:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-30:/les-expressions-regulieres.html</id><summary type="html">&lt;p&gt;Lorsque vous recherchez une expression dans un texte, il vous est sûrement déjà arrivé de réaliser que ce que vous voulez trouver correspond en réalité à un motif.&lt;/p&gt;
+&lt;p&gt;Par exemple, vous recherchez une adresse mail (inconnue) dans un document particulièrement long. Ou un numéro de téléphone. Ou tout autre texte …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lorsque vous recherchez une expression dans un texte, il vous est sûrement déjà arrivé de réaliser que ce que vous voulez trouver correspond en réalité à un motif.&lt;/p&gt;
+&lt;p&gt;Par exemple, vous recherchez une adresse mail (inconnue) dans un document particulièrement long. Ou un numéro de téléphone. Ou tout autre texte dont vous ne connaissez pas à l'avance le contenu, mais seulement la forme, le motif. Pour une adresse mail par exemple, ce sera le nom de l'adresse, suivi d'un &lt;code&gt;@&lt;/code&gt;, puis d'un nom de domaine (sous la forme &lt;code&gt;example.com&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Bien sûr, cet exemple est très simplifié, &lt;a href="https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="voici pour info"&gt;voici pour info&lt;/a&gt; comment valider une adresse mail en se pliant aux standards en vigueur... Mais ce sera suffisant pour trouver n'importe quelle adresse mail plausible.&lt;/p&gt;
+&lt;h2&gt;Quelques exemples avec explications&lt;/h2&gt;
+&lt;p&gt;Avant de commencer, petit point vocabulaire:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Match: Lorsqu'on cherche un motif dans un texte, si le motif est présent, on se retrouve avec le match: c'est l'ensemble des caractères qui satisfont le critère de recherche. Ensuite, si on veut aller plus loin, on peut capturer des parties du motif, ce sont les groupes de capture (voir ci-dessous).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Groupe de capture: Un des principaux avantages des expressions régulières est de pouvoir extraire du texte les caractères qui vous intéressent. C'est ce qu'on appelle la capture. Dans un programme utilisant une expression régulière (javascript, php, perl, python), on accède au contenu d'un groupe de capture grâce à son index. Exemple: &lt;code&gt;Tous les (chats|chiens) sont (gr[oi]s)&lt;/code&gt; . Dans le groupe de capture 1, on trouve &lt;code&gt;chats&lt;/code&gt; ou &lt;code&gt;chiens&lt;/code&gt;. Dans le groupe de capture 2, on trouvera soit gros, soit gris. Et dans le groupe de capture 0, on trouvera tout le match. Notez que des groupes de capture peuvent être imbriqués, dans ce cas le numéro du premier groupe de capture sera celui dont la parenthèse ouvrante est le plus à gauche (c'est donc le groupe le plus à l'extérieur d'abord).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Classe de caractère: Une description d'un ensemble de caractères possibles. Exemple: &lt;code&gt;[aeiouy]&lt;/code&gt; pour matcher une voyelle, et &lt;code&gt;[^aeiouy]&lt;/code&gt; pour matcher une consonne (&lt;em&gt;c.à.d.&lt;/em&gt; pas une voyelle, le caractère &lt;code&gt;^&lt;/code&gt; au début de la liste étant la négation). Il existe aussi des raccourcis, que je vous présente plus bas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Quantificateur: Une indication du nombre de répétition(s) du motif situé à gauche dudit quantificateur. Exemple: &lt;code&gt;[0-5]{6,10}&lt;/code&gt; signifie "trouve un nombre entre 0 et 5, répété entre 6 et 10 fois".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Numéro de téléphone français&lt;/h3&gt;
+&lt;p&gt;La première chose qui effraie la plupart des débutants, c'est la taille de certaines expressions régulières. Des dizaines de caractères à la suite, sans saut de ligne, qui, sans documentation, sont tout sauf explicites. Et au fond, même avec un bon entraînement, lire et comprendre une expression régulière que l'on n'a pas soi-même écrite peut être difficile.&lt;/p&gt;
+&lt;p&gt;Mais commençons ! Voici par exemple une expression régulière pour trouver un numéro de téléphone en France:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Décomposons cette regex. Entre parenthèses, on indique que l'on veut "capturer" le contenu du motif trouvé à l'intérieur. Ici, c'est &lt;code&gt;0[1-79]&lt;/code&gt;.
+Et pour expliquer ce motif, on a seulement besoin de comprendre les classes de caractères. Ici, &lt;code&gt;0[1-79]&lt;/code&gt; recherche littéralement un 0, suivi d'un nombre soit entre 1 et 7 (signifié par le tiret &lt;code&gt;-&lt;/code&gt;) ou encore un &lt;code&gt;9&lt;/code&gt;. Donc les crochets &lt;code&gt;[]&lt;/code&gt; permettent de trouver un caractère parmi ceux indiqués, avec la possibilité de donner des intervalles.&lt;/p&gt;
+&lt;p&gt;Exemple:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Va matcher n'importe quelle lettre, minuscule ou majuscule, mais sans accent. Pour ajouter quelques accents:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZéèêàù]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Maintenant que vous avez compris que &lt;code&gt;(0[1-79])&lt;/code&gt; capturait les deux premier chiffres d'un numéro de téléphone français, passons à la suite de l'expression.&lt;/p&gt;
+&lt;p&gt;Nous avons, après ce premier groupe de capture, &lt;code&gt;.?&lt;/code&gt;. Le point est un caractère spécial qui matche n'importe quel caractère (sauf les retours à la ligne).
+Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il signifie zéro ou un. Il s'écrit aussi &lt;code&gt;{0,1}&lt;/code&gt;, qui est la syntaxe complète des quantificateurs. Alors pourquoi chercher un caractère optionnel juste après les premiers chiffres ? Simplement parce que certaines personnes ajoutent un caractère tous les deux chiffres quand ils donnent leur numéro de téléphone. Certains ne séparent pas, d'autres mettent un point, d'autres encore un slash... Bref on pourrait aussi écrire &lt;code&gt;[/.]?&lt;/code&gt;, mais ici on veut prévoir tous les cas de figure. Notez ici qu'entre les crochets, pas besoin d'échapper le point. En effet, dans une classe de caractère, ajouter une telle "carte blanche" n'aurait aucun sens.&lt;/p&gt;
+&lt;p&gt;Viennent ensuite quatre répétitions de &lt;code&gt;.?(\d{2})&lt;/code&gt;. D'abord, le caractère de séparation optionnel (&lt;code&gt;.?&lt;/code&gt;). Celui-ci n'est pas intéressant, on ne le capture pas.&lt;/p&gt;
+&lt;p&gt;En revanche, ce qui suit nous intéresse: on veut trouver deux chiffres. Pour cela, on utilise une classe de caractères un peu spéciale, appelée méta séquence. C'est juste un antislash pour échapper le d qui suit. "d" pour "digit", soit chiffre en anglais. Entre crochet, le quantificateur. Si on met un seul chiffre, cela signifie "exactement n fois". Si on veut entre 0 et 5 fois la classe qui précède, on va séparer par une virgule, soit &lt;code&gt;{0,5}&lt;/code&gt;. Et si on veut entre 1 et une infinité, c'est soit &lt;code&gt;{1,}&lt;/code&gt;, soit son équivalent raccourci &lt;code&gt;+&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Et voilà comment interpréter une expression régulière !&lt;/p&gt;
+&lt;h3&gt;Adresse mail&lt;/h3&gt;
+&lt;p&gt;Autre exemple, pour une adresse électronique:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(\S+)@(\S+)\.(\S+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Cette regex fait apparaître une méta séquence que je ne vous ai pas présenté plus haut, les espaces. Notez que &lt;code&gt;\s&lt;/code&gt; matche n'importe quel caractère d'espace (tabulation, espace, retour à la ligne, et autres caractères ésotériques qui peuvent vous donner des bugs invisibles ^^).&lt;/p&gt;
+&lt;p&gt;À l'inverse, &lt;code&gt;\S&lt;/code&gt; matche tout caractère qui n'est pas un espace. Donc cette regex n'exclut pas beaucoup d'adresses mail invalides, mais trouvera la plupart des adresses mail plausibles.&lt;/p&gt;
+&lt;p&gt;Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.&lt;/p&gt;
+&lt;p&gt;&lt;link rel="stylesheet" href="tableau.css"&gt;&lt;/p&gt;
+&lt;table id="tableau"&gt;
+    &lt;tr&gt;
+        &lt;th class="text-center"&gt;Méta-séquence&lt;/th&gt;
+        &lt;th style="text-align:right"&gt;Signification&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\s&lt;/td&gt;
+        &lt;td class="text-right"&gt; Caractère espace (tabulation, espace, retour à la ligne) &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\S&lt;/td&gt;
+        &lt;td class="text-right"&gt; Caractère qui n'est pas un espace (notez la majuscule) &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\d&lt;/td&gt;
+        &lt;td class="text-right"&gt; Chiffre (d pour digit) &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\D&lt;/td&gt;
+        &lt;td class="text-right"&gt; Caractère qui n'est pas un chiffre &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\w&lt;/td&gt;
+        &lt;td class="text-right"&gt; Caractère de mot (w pour word), les accents sont acceptés &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;\W&lt;/td&gt;
+        &lt;td class="text-right"&gt; Caractère qui n'est pas un caractère de mot &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Ces méta séquences s'utilisent exactement comme n'importe quelle classe de caractère (&lt;code&gt;[a-zA-Zéèàç]&lt;/code&gt;), vous pouvez les utiliser avec des quantificateurs (&lt;code&gt;{0,+}&lt;/code&gt; ou &lt;code&gt;*&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Celle-ci est sans doute beaucoup trop permissive (elle ne permet que de s'assurer qu'il n'y a pas d'espace, qu'il y a bien un &lt;code&gt;@&lt;/code&gt; et un nom de domaine).
+Toutes les adresses mail valides seront détectées par ce motif, mais tous les textes détectés par ce motif ne seront pas des adresses mail valides.&lt;/p&gt;
+&lt;p&gt;N'utilisez donc pas cette expression régulière pour être certain qu'une adresse mail est valide ! S'il y a détection par ce motif, au mieux l'adresse est plausible.&lt;/p&gt;
+&lt;h2&gt;Comment construire une expression régulière&lt;/h2&gt;
+&lt;p&gt;Maintenant que vous avez compris comment fonctionnent des expression régulières existantes, voyons comment les créer. Nous allons voir le cas simple, linéaire, avec des matchs qui ne se chevauchent pas.&lt;/p&gt;
+&lt;p&gt;Construire soi-même une expression régulière n'est pas si complexe que ça en a l'air, en tout cas comparé au résultat vous risquez de vous étonner vous-même !&lt;/p&gt;
+&lt;p&gt;Pour commencer, vous pouvez "ancrer" votre expression régulière dans le texte à rechercher. &lt;/p&gt;
+&lt;p&gt;Pour cela, vous avez deux opérateurs: &lt;code&gt;^&lt;/code&gt; et &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Pour trouver un morceau de texte qui commence par votre motif:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;^Les chiens sont (.+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pour trouver le motif ci-dessus, toutes les lignes commençant par &lt;code&gt;Les chiens sont&lt;/code&gt; vont être trouvées. Puis ce qui suit sera capturé dans le groupe 1, le motif étant la carte blanche, répétée autant de fois que possible.&lt;/p&gt;
+&lt;p&gt;De même, vous pouvez chercher un motif qui termine une ligne, dans ce cas:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(.+) intelligents\.$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Dans cette situtation, toutes les lignes finissant par &lt;code&gt;inteeligents.&lt;/code&gt; seront trouvées, et ce qui précède sera capturé dans le groupe 1.&lt;/p&gt;
+&lt;p&gt;Pour finir, construire une expression régulière, c'est juste définir l'aspect d'un motif en utilisant les trois éléments vus plus haut: capturer ce qui vous intéresse, définir les valeurs possibles avec des classes de caractères, et quantifier ces dernières.&lt;/p&gt;
+&lt;p&gt;Exemple pour trouver dans un fichier de configuration, toutes les variables contenant &lt;code&gt;site&lt;/code&gt;:
+&lt;code&gt;(.*site.*)=(.+)&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Quelques conseils en vrac&lt;/h2&gt;
+&lt;p&gt;Lorsque vous utilisez une expression régulière, adaptez le degré de complexité à l'objectif que vous voulez atteindre. Comme dit plus haut, demandez-vous si vous préférez prendre le risque de trouver des faux positifs ou plutôt des faux négatifs. Si par exemple vous utilisez une expression régulière pour chercher une adresse mail dans un gros fichier texte, capturer des adresses mails non valides n'aura pas trop de conséquences, vous pourrez toujours les valider avec des outils tiers (ou une expression régulière plus restricive pour affiner la recherche). En revanche, si c'est pour vérifier qu'un utilisateur a bien rentré une adresse mail, vous ne pouvez pas vous permettre d'attraper des faux positifs (&lt;em&gt;i.e.&lt;/em&gt; accepter une adresse mail invalide).&lt;/p&gt;
+&lt;p&gt;Personne n'aime créer ou maintenir des expressions régulières... Heureusement, il existe &lt;a href="https://regex101.com/" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="un site Internet très pratique"&gt;un site Internet très pratique&lt;/a&gt; (que j'ai d'ailleurs utilisé pour écrire cet article) qui permet de:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tester vos expressions régulières&lt;/li&gt;
+&lt;li&gt;Générer des morceaux de code (utilisant votre regex) dans plusieurs langages de programmation&lt;/li&gt;
+&lt;li&gt;Expliquer la regex que vous êtes en train de tester&lt;/li&gt;
+&lt;li&gt;Et plus encore...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous avez même un pense-bête avec tous les opérateurs supportés dans le moteur d'expressions régulières que vous avez choisi.&lt;/p&gt;</content><category term="Informatique"></category><category term="regular expressions"></category><category term="text analysis"></category></entry><entry><title>Les lambda expressions en python</title><link href="https://steampunkislande.github.io/les-lambda-expressions-en-python.html" rel="alternate"></link><published>2021-12-25T23:00:00+01:00</published><updated>2021-12-28T01:00:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-25:/les-lambda-expressions-en-python.html</id><summary type="html">&lt;h1&gt;Les lambda expressions en python&lt;/h1&gt;
+&lt;p&gt;Ceci est le premier article de mon blog, et aujourd'hui je voulais vous partager mon expérience avec les lambda expressions en python.&lt;/p&gt;
+&lt;h2&gt;Présentation&lt;/h2&gt;
+&lt;p&gt;Cette syntaxe très pratique permet de créer des objets "appelables" sans définir une fonction entière, pour peu que le code a exécuter …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Les lambda expressions en python&lt;/h1&gt;
 &lt;p&gt;Ceci est le premier article de mon blog, et aujourd'hui je voulais vous partager mon expérience avec les lambda expressions en python.&lt;/p&gt;
 &lt;h2&gt;Présentation&lt;/h2&gt;
 &lt;p&gt;Cette syntaxe très pratique permet de créer des objets "appelables" sans définir une fonction entière, pour peu que le code a exécuter tienne en une ligne.&lt;/p&gt;
@@ -110,4 +226,4 @@ Le rôle de &lt;code&gt;d&lt;/code&gt; est donc d'associer une clé à un "appel
 &lt;p&gt;Un dessin vaut mieux qu'un long discours:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="How partial is used" src="../images/lambda_expressions_partial.png"&gt;&lt;/p&gt;
 &lt;p&gt;Voilà ! Maintenant, vous savez comment utiliser les lambda expressions et éviter les pièges !
-J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur &lt;a href="https://github.com/SteampunkIslande/blog/issues" target="_blank"&gt;GitHub&lt;/a&gt; (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).&lt;/p&gt;</content><category term="Python"></category><category term="lambda"></category><category term="common issues"></category></entry></feed>
+J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur &lt;a href="https://github.com/SteampunkIslande/blog/issues" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="GitHub"&gt;GitHub&lt;/a&gt; (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).&lt;/p&gt;</content><category term="Python"></category><category term="lambda"></category><category term="common issues"></category></entry></feed>
