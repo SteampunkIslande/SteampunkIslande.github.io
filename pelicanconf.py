@@ -1,3 +1,5 @@
+import markdown
+
 AUTHOR = "Charles Monod-Broca"
 SITENAME = "Let's tame that python together"
 
@@ -38,4 +40,7 @@ DEFAULT_PAGINATION = 10
 
 OUTPUT_PATH = "docs/"
 
-SITEURL = "https://steampunkislande.github.io/"
+# SITEURL = "https://steampunkislande.github.io"
+SITEURL = ""
+
+MARKDOWN = {"extensions": ["markdown_include.include"]}
