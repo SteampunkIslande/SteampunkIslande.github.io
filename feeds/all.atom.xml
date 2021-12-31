@@ -49,7 +49,6 @@ Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il
 &lt;p&gt;Cette regex fait apparaître une méta séquence que je ne vous ai pas présenté plus haut, les espaces. Notez que &lt;code&gt;\s&lt;/code&gt; matche n'importe quel caractère d'espace (tabulation, espace, retour à la ligne, et autres caractères ésotériques qui peuvent vous donner des bugs invisibles ^^).&lt;/p&gt;
 &lt;p&gt;À l'inverse, &lt;code&gt;\S&lt;/code&gt; matche tout caractère qui n'est pas un espace. Donc cette regex n'exclut pas beaucoup d'adresses mail invalides, mais trouvera la plupart des adresses mail plausibles.&lt;/p&gt;
 &lt;p&gt;Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.&lt;/p&gt;
-&lt;p&gt;&lt;link rel="stylesheet" href="tableau.css"&gt;&lt;/p&gt;
 &lt;table id="tableau"&gt;
     &lt;tr&gt;
         &lt;th class="text-center"&gt;Méta-séquence&lt;/th&gt;
