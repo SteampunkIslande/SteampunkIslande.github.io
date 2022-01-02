@@ -40,11 +40,17 @@ DEFAULT_PAGINATION = 10
 
 OUTPUT_PATH = "docs/"
 
-SITEURL = "https://steampunkislande.github.io"
-# SITEURL = ""
+# SITEURL = "https://steampunkislande.github.io"
+SITEURL = ""
 
 MARKDOWN = {
-    "extensions": ["markdown_include.include", "markdown_link_attr_modifier"],
+    "extensions": [
+        "markdown_include.include",
+        "markdown_link_attr_modifier",
+        "pymdownx.tabbed",
+        "pymdownx.superfences",
+        "pymdownx.highlight",
+    ],
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
@@ -54,6 +60,7 @@ MARKDOWN = {
             "no_referrer": "external_only",
             "auto_title": "on",
         },
+        "pymdownx.superfences": {"preserve_tabs": True},
     },
     "output_format": "html5",
 }
