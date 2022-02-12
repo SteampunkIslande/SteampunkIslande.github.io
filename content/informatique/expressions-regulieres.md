@@ -73,7 +73,36 @@ Cette regex fait apparaître une méta séquence que je ne vous ai pas présent�
 
 Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.
 
-{! content/informatique/regex_metasequences_table.html !}
+<table id="tableau">
+    <tr>
+        <th class="text-center">Méta-séquence</th>
+        <th style="text-align:right">Signification</th>
+    </tr>
+    <tr>
+        <td>\s</td>
+        <td class="text-right"> Caractère espace (tabulation, espace, retour à la ligne) </td>
+    </tr>
+    <tr>
+        <td>\S</td>
+        <td class="text-right"> Caractère qui n'est pas un espace (notez la majuscule) </td>
+    </tr>
+    <tr>
+        <td>\d</td>
+        <td class="text-right"> Chiffre (d pour digit) </td>
+    </tr>
+    <tr>
+        <td>\D</td>
+        <td class="text-right"> Caractère qui n'est pas un chiffre </td>
+    </tr>
+    <tr>
+        <td>\w</td>
+        <td class="text-right"> Caractère de mot (w pour word), les accents sont acceptés </td>
+    </tr>
+    <tr>
+        <td>\W</td>
+        <td class="text-right"> Caractère qui n'est pas un caractère de mot </td>
+    </tr>
+</table>
 
 Ces méta séquences s'utilisent exactement comme n'importe quelle classe de caractère (`[a-zA-Zéèàç]`), vous pouvez les utiliser avec des quantificateurs (`{0,+}` ou `*`).
 
