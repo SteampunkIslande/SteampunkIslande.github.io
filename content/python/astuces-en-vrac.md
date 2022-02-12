@@ -1,11 +1,12 @@
 Title: Astuces en vrac
 Date: 2021-12-31 12:00
-Modified: 2021-12-31 12:00
+Modified: 2022-02-12 23:51
 Category: Python
 Tags: tips, tricks
 Slug: astuces-en-vrac
 Authors: Charles Monod-Broca
 
+Modified: une ligne que je ne veux pas voir modifiée
 
 Python est sûrement le langage le plus élégant que je connaisse, et j'espère que cette page de trucs et astuces vous en convaincra également. Sans plus tarder, une liste non exhaustive, non ordonnée, de conseils pratiques pour gagner du temps de développement.
 
@@ -14,7 +15,7 @@ Python est sûrement le langage le plus élégant que je connaisse, et j'espère
 En python, vous pouvez empaqueter et désempaqueter des listes, avec l'opérateur `*`.
 Il fonctionne de la même manière dans les deux sens. Exemple avec cette fonction:
 
-## Empaqueter une liste d'arguments dans une liste: les bases
+## Empaqueter une liste d'arguments dans une liste
 
 ```python
 def f(*args):
@@ -29,7 +30,7 @@ Pour appeler cette fonction, vous pouvez passez autant d'arguments que vous voul
 
 Ainsi, avec cette étoile, vous avez empaqueté la liste des arguments dans une liste appelée args. Ce qui vous permet de passer autant d'arguments positionnels que vous voulez, et pour y accéder vous pouvez considérer `args` comme n'importe quelle liste. Et vous n'êtes pas obligé de l'appeler `args`, c'est juste une convention.
 
-## Désempaqueter une liste en liste d'arguments: les bases
+## Désempaqueter une liste en liste d'arguments
 
 À l'inverse, vous pouvez désempaqueter une liste. Prenons cette nouvelle fonction, qui prend trois arguments en paramère:
 
@@ -45,7 +46,7 @@ Dans ce cas, on doit passer plusieurs arguments à f. L'approche naïve serait:
 f(l[0],l[1],l[2])
 ```
 
-Ça fonctionne, bien sûr, mais ce n'est pas très pratique. Notamment si vous avez construit une liste vraiment longue, comme il peut arriver quand vous lisez les arguments depuis une chaîne de caractères dans un fichier.
+Ça fonctionne, bien sûr, mais ce n'est pas très pratique. Notamment si vous avez construit une liste vraiment longue, accéder aux éléments un par un peut être fastidieux et source d'erreurs.
 
 Exemple:
 ```python
@@ -63,7 +64,7 @@ with open("example") as f:
 ```
 
 Beaucoup trop long... Imaginez si `ma_fonction` prenait plus d'arguments... Vous allez en taper du code !
-Avec le désempaquetage des liste, et son opérateur `*`, vous pouvez faire l'inverse de ce qu'on a vu plus haut, à savoir décomposer une liste en arguments.
+Avec le désempaquetage des listes, et son opérateur `*`, vous pouvez faire l'inverse de ce qu'on a vu plus haut, à savoir décomposer une liste en arguments.
 
 Ce qui donne:
 
@@ -74,64 +75,52 @@ def ma_fonction(first, second, third='default_value'):
 
 with open("example") as f:
     for line in f:
-        # Chaque ligne contient bien les arguments que je veux, séparés par des virgules 
+        # Chaque ligne contient bien les arguments que je veux, séparés par des virgules
         ma_fonction(*line.split(","))
 ```
 
-Et voilà, `line.split()` vous donne une liste, et vous la transformez en arguments positionnels avec le seul opérateur `*`. Je trouve ce gain en lisibilité et en temps de programmation plutôt important.
+Et voilà, `line.split()` vous donne une liste, et vous la transformez en arguments positionnels avec le seul opérateur `*`. Plus lisible et bien plus efficace.
 
 ## Pour aller plus loin
 
 ### Désempaqueter dans un assignement
 
 Il est aussi possible d'empaqueter et de désempaqueter des listes dans des expressions d'assignement.
-Exemple, si vous avez un CSV avec cette structure:
-`Nom, Prénoms..., Âge`
 
-Notez les points de suspension après la colonne Prénoms. Dans votre CSV, il peut y avoir un ou plusieurs prénom par ligne, vous ne savez pas combien par avance. Or si vous voulez extraire du CSV une liste de personnes, sous la forme d'un dictionnaire; vous aimeriez avoir une liste pour le champ `Prénoms`, une chaîne de caractère pour le champ `Nom`, un entier pour le champ `Âge`... Bref plutôt compliqué. Mais en python, la solution est étonnamment simple. Voyez plutôt:
+Typiquement, si vous avez un CSV avec un nombre de colonnes variable. Exemple:
+
+```
+Prénom, Âge, Professions
+Boby, 24, Bioinformaticien
+Alexandre, 27, Acteur, Réalisateur, Scénariste, Photographe, Musicien
+Roland, 23, Community Manager, Chômeur
+```
+
+Notez qu'une même personne peut avoir un nombre variable de professions. Or si vous voulez extraire du CSV une liste de personnes et que vous voulez pour chaque personne son nom, son âge et ses professions, comment allez-vous vous y prendre ?
+
+Une solution possible est décrite ci-dessous:
 
 ```python
+personnes = []
 with open("exemple.csv") as f:
-    personnes = []
+    header = next(f)
     for line in f:
         # *prenoms permet d'extraire sous forme de liste le 'reste' du désempaquetage
-        nom, *prenoms, age = line.split(",")
-        personne = {"Nom":nom, "Prénoms":prenoms, "Âge":age}
+        prenom, age, *professions = line.split(",")
+        personne = {"Prénom":prenom, "Âge":age, "Profession(s)":professions}
         personnes.append(personne)
 ```
 
-Ici, on a désempaqueté le contenu de `line.split(",")` en le plaçant dans `nom`, `*prenom` et `age`.
+Notez que dans cette approche, la magie opère de manière très discrète: juste `*professions` qui permet de récupérer tout ce qui n'a pas pu être désempaqueté.
+Vous pouvez tester ce petit script en reprenant le CSV proposé plus haut, et en affichant la variable `personnes`.
 
-Mais comme la taille du split peut être plus grande que trois, il faut collecter ce trop-plein sous peine d'une erreur. En effet, python ne peut pas deviner que seul le premier et le dernier champ (`nom` et `âge`) sont fixes, et que c'est `prenoms` qui varie. Grâce à l'opérateur `*`, vous dites au moment de désempaqueter la liste: "Prenez ce que vous voulez, je prendrai ce qui reste". Et comme la taille du reste est variable, python en fait une liste.
+Remarque:
 
-Notez qu'avec cette technique, vous ne pouvez avoir que trois parties: une ancre à gauche et/ou une ancre à droite, et une partie variable au milieu. Pour résumer:
-
-=== "Ancres à droite"
-        ```python
-l = ["Boby","Jean-Eudes","Dupont",25,42]
-#OK: trois ancres à droite: une seule façon de désempaqueter
-*prenoms,nom,age,reponse = l
-    ```
-    ![Ancres à droite](https://imgur.com/2Mslfpq)
-
-=== "Ancres à gauche et à droite"    
-    ```
-        #OK: une ancre à gauche, deux ancres à droite: une seule façon de désempaqueter, en mettant le reste dans noms
-        prenom,*noms,age,reponse = l
-    ```
-    ![Ancres à gauche et à droite](https://imgur.com/wnpLEdC)
-
-=== "Ancres à gauche"
-    ```
-        #OK: trois ancres à gauche: désempaqueter les trois premiers et laisser le reste comme une liste
-        prenom1,prenom2,nom,*reponses = l
-    ```
-    ![Ancres à gauche](https://imgur.com/o4bFaU2)
-
-=== "Erreur"
+Il est possible de placer cette wildcard où vous voulez dans l'assignement, mais une seule fois maximum !
+Exemple:
 ```python
-    # Erreur: On demande de désempaqueter nom, et le reste de se partager entre gauche et droite. Mais comment ? Python ne peut pas deviner !
-    *prenom,nom,*reponses = l
+prenom, nom, *notes, age = line.split(",")
+*prenoms, nom, age = line.split(",")
 ```
 
 ### Passer un dictionnaire en arguments nommés
@@ -189,23 +178,23 @@ Args. nommés:
 
 ### Quelques pièges à éviter
 
-Utiliser `*args` et `**kwargs` dans vos fonctions les rendent beaucoup plus difficile à débugger. Utilisez les uniquement si vous savez ce que vous faites.
-Un des gros inconvénients qui me vient en tête est l'absence d'erreur en cas de faute de frappe lorsque vous faites appel à un argument nommé qui n'est pas en paramètre d'une fonction. Exemple:
+Utiliser `*args` et `**kwargs` dans vos fonctions les rendent beaucoup plus difficile à débugger. Utilisez-les uniquement si vous savez ce que vous faites.
+Un des gros inconvénients qui me vient en premier est l'absence d'erreur en cas de faute de frappe lorsque vous faites appel à un argument nommé qui n'est pas en paramètre d'une fonction. Exemple:
 
 ```python
 def f(a,b,**kwargs):
-    if "cassette" in kwargs:
-        print("cassette aussi")
+    if "color" in kwargs:
+        print("color set")
 
-#J'ai mis trois s
-f(5,6,casssette="k7")
+#J'ai mal orthographié color
+f(5,6,colour="red")
 ```
 
-Si vous exécutez ce code, il n'y aura aucune erreur. Mais vous vous attendiez à un comportement qui n'arrive pas, à savoir l'affichage de `cassette aussi`.
+Si vous exécutez ce code, il n'y aura aucune erreur, bien que vous vous attendiez à voir affiché `color set`.
 
 Le code est donc beaucoup moins facile à débugger puisque vous pensiez avoir fourni un argument, qu'il n'y a pas d'erreur, et que vous n'avez quand même pas le résultat attendu.
 
-Dans l'autre sens, en revanche, je recommande chaudement l'utilisation du désempaquetage de dictionnaire. Avec un mini piège cependant...
+Dans l'autre sens, en revanche, je recommande fortement l'utilisation du désempaquetage de dictionnaire. Avec un mini piège cependant...
 Pour une fonction documentée:
 
 ```python
@@ -225,11 +214,13 @@ f(6,**d)
 Ce que me dit IPython:
 <pre><font color="#CC0000">TypeError</font>: f() got multiple values for argument &apos;a&apos;</pre>
 
-# Formatter l'affichage d'un nombre entier avec les expressions régulières
+Ce qui est normal, vous avez passé une valeur à `a` comme argument positionnel, puis le reste a été passé en arguments nommés. Comme `a` est aussi défini dans `d`, python ne sait pas quelle valeur choisir et vous renvoie une erreur.
+
+# Formater l'affichage d'un nombre entier avec les expressions régulières
 
 Encore un cas pratique des expressions régulières !
 
-Question: Comment formatter un nombre entier en insérant un espace tous les trois chiffres (mais de droite à gauche) ?
+Question: Comment formater un nombre entier en insérant un espace tous les trois chiffres (mais de droite à gauche) ?
 
 Réponse: Avec une expression régulière et la fonction `sub`.
 
@@ -265,20 +256,17 @@ On a bien séparé les centaines, les dizaines et les unités des milliers. Mais
 
 Et voilà! En prime, deux appelables issus de cette astuce (vous choisissez, fonction ou fonction anonyme):
 
-=== "Fonction"
-    ```python
-    import re
+```python fct_label="Fonction"
+import re
 
-    def format_number(x):
-        if not isinstance(x,int):
-            return ""
-        return re.sub(r"\d{3}",r"\g<0> ",str(x)[::-1])[::-1]
-    ```
+def format_number(x):
+    if not isinstance(x,int):
+        return ""
+    return re.sub(r"\d{3}",r"\g<0> ",str(x)[::-1])[::-1]
+```
 
-=== "Lambda"
-    ```python
-    import re
+```python fct_label="Lambda"
+import re
 
-    formatter = lambda x:re.sub(r"\d{3}",r"\g<0> ",str(x)[::-1])[::-1]
-    ```
-
+formatter = lambda x:re.sub(r"\d{3}",r"\g<0> ",str(x)[::-1])[::-1]
+```
