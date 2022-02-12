@@ -14,7 +14,6 @@ import sys
 )
 def main(file, sep):
     head = """
-    <link rel="stylesheet" href="tableau.css">
     <table id="tableau">
     """
     with file as f:
