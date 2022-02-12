@@ -1,12 +1,10 @@
 Title: Astuces en vrac
 Date: 2021-12-31 12:00
-Modified: 2022-02-12 23:51
+Modified: 2022-02-12 23:55
 Category: Python
 Tags: tips, tricks
 Slug: astuces-en-vrac
 Authors: Charles Monod-Broca
-
-Modified: une ligne que je ne veux pas voir modifiée
 
 Python est sûrement le langage le plus élégant que je connaisse, et j'espère que cette page de trucs et astuces vous en convaincra également. Sans plus tarder, une liste non exhaustive, non ordonnée, de conseils pratiques pour gagner du temps de développement.
 
