@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Astuces en vrac</title>
+
+    <link href="https://steampunkislande.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        title="Let's tame that python together Full Atom Feed" />
+    <link href="https://steampunkislande.github.io/feeds/{slug}.atom.xml" type="application/atom+xml"
+        rel="alternate" title="Let's tame that python together Categories Atom Feed" />
+    <!-- Bootstrap Core CSS -->
+    <link href="https://steampunkislande.github.io/theme/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="https://steampunkislande.github.io/theme/css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Personal CSS for nice table -->
+    <link href="https://steampunkislande.github.io/theme/css/tableau.css" rel="stylesheet">
+
+    <!-- CSS for markdown-fenced-blocks -->
+    <link href="https://steampunkislande.github.io/theme/css/code-tab.css" rel="stylesheet">
+
+    <!-- Code highlight color scheme -->
+    <link href="https://steampunkislande.github.io/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
+    <link
+        href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="Modified: une ligne que je ne veux pas voir modifiée Python est sûrement le langage le plus élégant que je connaisse, et j'espère que...">
+
+        <meta name="author" content="Charles Monod-Broca">
+
+        <meta name="tags" content="tips">
+        <meta name="tags" content="tricks">
+
+	    <meta property="og:locale" content="">
+    <meta property="og:site_name" content="Let's tame that python together">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="https://steampunkislande.github.io/author/charles-monod-broca.html">
+	<meta property="og:url" content="https://steampunkislande.github.io/astuces-en-vrac.html">
+	<meta property="og:title" content="Astuces en vrac">
+	<meta property="article:published_time" content="2021-12-31 12:00:00+01:00">
+            <meta property="og:description" content="Modified: une ligne que je ne veux pas voir modifiée Python est sûrement le langage le plus élégant que je connaisse, et j'espère que...">
+
+            <meta property="og:image" content="https://steampunkislande.github.io/theme/images/post-bg.jpg">
+</head>
+
+
+    <body class="article-astuces-en-vrac">
+
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header page-scroll">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="https://steampunkislande.github.io/">Let's tame that python together</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+
+  <li>
+                                    <a href="https://steampunkislande.github.io/pages/a-propos.html">À propos</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container -->
+                </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('https://steampunkislande.github.io/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Astuces en vrac</h1>
+                        <span class="meta">Posted by
+                                <a href="https://steampunkislande.github.io/author/charles-monod-broca.html">Charles Monod-Broca</a>
+                             on ven. 31 décembre 2021
+                        </span>
+                            <span class="meta">Updated on sam. 12 février 2022</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+                <!-- Main Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>Modified: une ligne que je ne veux pas voir modifiée</p>
+<p>Python est sûrement le langage le plus élégant que je connaisse, et j'espère que cette page de trucs et astuces vous en convaincra également. Sans plus tarder, une liste non exhaustive, non ordonnée, de conseils pratiques pour gagner du temps de développement.</p>
+<h1>Empaqueter et désempaqueter des listes</h1>
+<p>En python, vous pouvez empaqueter et désempaqueter des listes, avec l'opérateur <code>*</code>.
+Il fonctionne de la même manière dans les deux sens. Exemple avec cette fonction:</p>
+<h2>Empaqueter une liste d'arguments dans une liste</h2>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>args</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Pour appeler cette fonction, vous pouvez passez autant d'arguments que vous voulez. À l'exécution:</p>
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span> <span class=n>f</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>)</span>
+<span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]</span>
+</code></pre></div></p>
+<p>Ainsi, avec cette étoile, vous avez empaqueté la liste des arguments dans une liste appelée args. Ce qui vous permet de passer autant d'arguments positionnels que vous voulez, et pour y accéder vous pouvez considérer <code>args</code> comme n'importe quelle liste. Et vous n'êtes pas obligé de l'appeler <code>args</code>, c'est juste une convention.</p>
+<h2>Désempaqueter une liste en liste d'arguments</h2>
+<p>À l'inverse, vous pouvez désempaqueter une liste. Prenons cette nouvelle fonction, qui prend trois arguments en paramère:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=n>c</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=n>c</span><span class=p>)</span>
+<span class=n>l</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]</span>
+</code></pre></div></p>
+<p>Dans ce cas, on doit passer plusieurs arguments à f. L'approche naïve serait:</p>
+<p> <div class=highlight><pre><span></span><code><span class=n>f</span><span class=p>(</span><span class=n>l</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=n>l</span><span class=p>[</span><span class=mi>1</span><span class=p>],</span><span class=n>l</span><span class=p>[</span><span class=mi>2</span><span class=p>])</span>
+</code></pre></div></p>
+<p>Ça fonctionne, bien sûr, mais ce n'est pas très pratique. Notamment si vous avez construit une liste vraiment longue, accéder aux éléments un par un peut être fastidieux et source d'erreurs.</p>
+<p>Exemple:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>ma_fonction</span><span class=p>(</span><span class=n>first</span><span class=p>,</span> <span class=n>second</span><span class=p>,</span> <span class=n>third</span><span class=o>=</span><span class=s1>&#39;default_value&#39;</span><span class=p>):</span>
+    <span class=c1># Peu importe ce que fait la fonction elle prend trois arguments</span>
+    <span class=o>...</span>
+
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&quot;example&quot;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>f</span><span class=p>:</span>
+        <span class=c1># Chaque ligne contient bien les arguments que je veux, séparés par des virgules</span>
+        <span class=n>mes_arguments</span> <span class=o>=</span> <span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&quot;,&quot;</span><span class=p>)</span>
+        <span class=n>ma_fonction</span><span class=p>(</span><span class=n>mes_arguments</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span><span class=n>mes_arguments</span><span class=p>[</span><span class=mi>1</span><span class=p>],</span><span class=n>mes_arguments</span><span class=p>[</span><span class=mi>2</span><span class=p>])</span>
+</code></pre></div></p>
+<p>Beaucoup trop long... Imaginez si <code>ma_fonction</code> prenait plus d'arguments... Vous allez en taper du code !
+Avec le désempaquetage des listes, et son opérateur <code>*</code>, vous pouvez faire l'inverse de ce qu'on a vu plus haut, à savoir décomposer une liste en arguments.</p>
+<p>Ce qui donne:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>ma_fonction</span><span class=p>(</span><span class=n>first</span><span class=p>,</span> <span class=n>second</span><span class=p>,</span> <span class=n>third</span><span class=o>=</span><span class=s1>&#39;default_value&#39;</span><span class=p>):</span>
+    <span class=c1># Peu importe ce que fait la fonction elle prend trois arguments</span>
+    <span class=o>...</span>
+
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&quot;example&quot;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>f</span><span class=p>:</span>
+        <span class=c1># Chaque ligne contient bien les arguments que je veux, séparés par des virgules</span>
+        <span class=n>ma_fonction</span><span class=p>(</span><span class=o>*</span><span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&quot;,&quot;</span><span class=p>))</span>
+</code></pre></div></p>
+<p>Et voilà, <code>line.split()</code> vous donne une liste, et vous la transformez en arguments positionnels avec le seul opérateur <code>*</code>. Plus lisible et bien plus efficace.</p>
+<h2>Pour aller plus loin</h2>
+<h3>Désempaqueter dans un assignement</h3>
+<p>Il est aussi possible d'empaqueter et de désempaqueter des listes dans des expressions d'assignement.</p>
+<p>Typiquement, si vous avez un CSV avec un nombre de colonnes variable. Exemple:</p>
+<p> <div class=highlight><pre><span></span><code>Prénom, Âge, Professions
+Boby, 24, Bioinformaticien
+Alexandre, 27, Acteur, Réalisateur, Scénariste, Photographe, Musicien
+Roland, 23, Community Manager, Chômeur
+</code></pre></div></p>
+<p>Notez qu'une même personne peut avoir un nombre variable de professions. Or si vous voulez extraire du CSV une liste de personnes et que vous voulez pour chaque personne son nom, son âge et ses professions, comment allez-vous vous y prendre ?</p>
+<p>Une solution possible est décrite ci-dessous:</p>
+<p> <div class=highlight><pre><span></span><code><span class=n>personnes</span> <span class=o>=</span> <span class=p>[]</span>
+<span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s2>&quot;exemple.csv&quot;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+    <span class=n>header</span> <span class=o>=</span> <span class=nb>next</span><span class=p>(</span><span class=n>f</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>line</span> <span class=ow>in</span> <span class=n>f</span><span class=p>:</span>
+        <span class=c1># *prenoms permet d&#39;extraire sous forme de liste le &#39;reste&#39; du désempaquetage</span>
+        <span class=n>prenom</span><span class=p>,</span> <span class=n>age</span><span class=p>,</span> <span class=o>*</span><span class=n>professions</span> <span class=o>=</span> <span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&quot;,&quot;</span><span class=p>)</span>
+        <span class=n>personne</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&quot;Prénom&quot;</span><span class=p>:</span><span class=n>prenom</span><span class=p>,</span> <span class=s2>&quot;Âge&quot;</span><span class=p>:</span><span class=n>age</span><span class=p>,</span> <span class=s2>&quot;Profession(s)&quot;</span><span class=p>:</span><span class=n>professions</span><span class=p>}</span>
+        <span class=n>personnes</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>personne</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Notez que dans cette approche, la magie opère de manière très discrète: juste <code>*professions</code> qui permet de récupérer tout ce qui n'a pas pu être désempaqueté.
+Vous pouvez tester ce petit script en reprenant le CSV proposé plus haut, et en affichant la variable <code>personnes</code>.</p>
+<p>Remarque:</p>
+<p>Il est possible de placer cette wildcard où vous voulez dans l'assignement, mais une seule fois maximum !
+Exemple:</p>
+<p> <div class=highlight><pre><span></span><code><span class=n>prenom</span><span class=p>,</span> <span class=n>nom</span><span class=p>,</span> <span class=o>*</span><span class=n>notes</span><span class=p>,</span> <span class=n>age</span> <span class=o>=</span> <span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&quot;,&quot;</span><span class=p>)</span>
+<span class=o>*</span><span class=n>prenoms</span><span class=p>,</span> <span class=n>nom</span><span class=p>,</span> <span class=n>age</span> <span class=o>=</span> <span class=n>line</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&quot;,&quot;</span><span class=p>)</span>
+</code></pre></div></p>
+<h3>Passer un dictionnaire en arguments nommés</h3>
+<p>Dernier cas de figure, vous avez un dictionnaire dont les clés correspondent parfaitement aux noms des arguments de votre fonction.</p>
+<p>Exemple:</p>
+<p> <div class=highlight><pre><span></span><code><span class=n>d</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&quot;a&quot;</span><span class=p>:</span><span class=mi>5</span><span class=p>,</span><span class=s2>&quot;b&quot;</span><span class=p>:</span><span class=mi>3</span><span class=p>}</span>
+<span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Pour passer votre dictionnaire en argument de f, vous pouvez le désempaqueter avec un opérateur similaire à celui pour désempaqueter une liste. Comme ceci:</p>
+<p> <div class=highlight><pre><span></span><code><span class=n>d</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&quot;a&quot;</span><span class=p>:</span><span class=mi>5</span><span class=p>,</span><span class=s2>&quot;b&quot;</span><span class=p>:</span><span class=mi>3</span><span class=p>}</span>
+<span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>)</span>
+
+<span class=n>f</span><span class=p>(</span><span class=o>**</span><span class=n>d</span><span class=p>)</span>
+</code></pre></div></p>
+<p>L'opérateur <code>**</code> permet de transformer un dictionnaire en arguments nommés.</p>
+<h3>Accepter n'importe quel argument nommé dans une fonction</h3>
+<p>Dans une fonction, pour accepter n'importe quel argument nommé:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+    <span class=k>if</span> <span class=s2>&quot;a&quot;</span> <span class=ow>in</span> <span class=n>kwargs</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;named argument a was passed to f :&quot;</span><span class=p>,</span><span class=n>kwargs</span><span class=p>[</span><span class=s2>&quot;a&quot;</span><span class=p>])</span>
+    <span class=k>if</span> <span class=s2>&quot;b&quot;</span> <span class=ow>in</span> <span class=n>kwargs</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;named argument b was passed to f :&quot;</span><span class=p>,</span><span class=n>kwargs</span><span class=p>[</span><span class=s2>&quot;b&quot;</span><span class=p>])</span>
+
+<span class=n>f</span><span class=p>(</span><span class=n>a</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span><span class=n>b</span><span class=o>=</span><span class=mi>3</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Notez que la syntaxe est très proche de celle utilisée pour les arguments positionnels. On peut même les mélanger:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span><span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&quot;Args. positionnels:</span><span class=se>\n</span><span class=si>{</span><span class=n>args</span><span class=si>}</span><span class=se>\n</span><span class=s2>Args. nommés:</span><span class=se>\n</span><span class=si>{</span><span class=n>kwargs</span><span class=si>}</span><span class=s2>&quot;</span><span class=p>)</span>
+
+<span class=n>f</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=n>x</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span><span class=n>y</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span><span class=n>z</span><span class=o>=</span><span class=mi>5</span><span class=p>)</span>
+
+<span class=c1># Résultat:</span>
+<span class=n>Args</span><span class=o>.</span> <span class=n>positionnels</span><span class=p>:</span>
+<span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span>
+<span class=n>Args</span><span class=o>.</span> <span class=n>nommés</span><span class=p>:</span>
+<span class=p>{</span><span class=s1>&#39;x&#39;</span><span class=p>:</span> <span class=mi>3</span><span class=p>,</span> <span class=s1>&#39;y&#39;</span><span class=p>:</span> <span class=mi>4</span><span class=p>,</span> <span class=s1>&#39;z&#39;</span><span class=p>:</span> <span class=mi>5</span><span class=p>}</span>
+</code></pre></div></p>
+<h3>Quelques pièges à éviter</h3>
+<p>Utiliser <code>*args</code> et <code>**kwargs</code> dans vos fonctions les rendent beaucoup plus difficile à débugger. Utilisez-les uniquement si vous savez ce que vous faites.
+Un des gros inconvénients qui me vient en premier est l'absence d'erreur en cas de faute de frappe lorsque vous faites appel à un argument nommé qui n'est pas en paramètre d'une fonction. Exemple:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+    <span class=k>if</span> <span class=s2>&quot;color&quot;</span> <span class=ow>in</span> <span class=n>kwargs</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;color set&quot;</span><span class=p>)</span>
+
+<span class=c1>#J&#39;ai mal orthographié color</span>
+<span class=n>f</span><span class=p>(</span><span class=mi>5</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=n>colour</span><span class=o>=</span><span class=s2>&quot;red&quot;</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Si vous exécutez ce code, il n'y aura aucune erreur, bien que vous vous attendiez à voir affiché <code>color set</code>.</p>
+<p>Le code est donc beaucoup moins facile à débugger puisque vous pensiez avoir fourni un argument, qu'il n'y a pas d'erreur, et que vous n'avez quand même pas le résultat attendu.</p>
+<p>Dans l'autre sens, en revanche, je recommande fortement l'utilisation du désempaquetage de dictionnaire. Avec un mini piège cependant...
+Pour une fonction documentée:</p>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>a</span><span class=p>,</span><span class=n>b</span><span class=p>,</span><span class=n>c</span><span class=p>):</span>
+    <span class=o>...</span>
+
+<span class=n>d</span><span class=o>=</span><span class=p>{</span><span class=s2>&quot;a&quot;</span><span class=p>:</span><span class=mi>1</span><span class=p>,</span><span class=s2>&quot;b&quot;</span><span class=p>:</span><span class=mi>3</span><span class=p>,</span><span class=s2>&quot;c&quot;</span><span class=p>:</span><span class=mi>5</span><span class=p>}</span>
+<span class=c1># Tout marche...</span>
+<span class=n>f</span><span class=p>(</span><span class=o>**</span><span class=n>d</span><span class=p>)</span>
+
+<span class=c1>#... &#39;a&#39; étant le premier argument, mais aussi présent dans d</span>
+<span class=c1>#... quelle valeur doit-il prendre ?</span>
+<span class=n>f</span><span class=p>(</span><span class=mi>6</span><span class=p>,</span><span class=o>**</span><span class=n>d</span><span class=p>)</span>
+</code></pre></div></p>
+<p>Ce que me dit IPython:</p>
+<pre><font color="#CC0000">TypeError</font>: f() got multiple values for argument &apos;a&apos;</pre>
+
+<p>Ce qui est normal, vous avez passé une valeur à <code>a</code> comme argument positionnel, puis le reste a été passé en arguments nommés. Comme <code>a</code> est aussi défini dans <code>d</code>, python ne sait pas quelle valeur choisir et vous renvoie une erreur.</p>
+<h1>Formater l'affichage d'un nombre entier avec les expressions régulières</h1>
+<p>Encore un cas pratique des expressions régulières !</p>
+<p>Question: Comment formater un nombre entier en insérant un espace tous les trois chiffres (mais de droite à gauche) ?</p>
+<p>Réponse: Avec une expression régulière et la fonction <code>sub</code>.</p>
+<p>Première étape: comprendre la fonction <code>re.sub</code>. En python:</p>
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span><span class=kn>import</span> <span class=nn>re</span>
+<span class=o>&gt;&gt;&gt;</span><span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;\d</span><span class=si>{3}</span><span class=s2>&quot;</span><span class=p>,</span><span class=sa>r</span><span class=s2>&quot;\g&lt;0&gt; &quot;</span><span class=p>,</span><span class=nb>str</span><span class=p>(</span><span class=mi>1789</span><span class=p>))</span>
+<span class=mi>178</span> <span class=mi>9</span>
+</code></pre></div></p>
+<p>L'expression régulière ci-dessus recherche des groupes de trois lettres. Il n'y a pas de groupe de capture, mais dans la chaîne de remplacement, on demande le groupe 0 suivi d'un espace. Rappelez-vous, si une expression régulière matche, le groupe de capture 0 représente le match complet. Dans notre exemple, il y a quatre chiffres. Donc il y a un seul match de trois lettres, situé au début. Ça, on ne peut rien y faire, c'est le fonctionnement normal des expressions régulières.</p>
+<p>Mais on peut ruser. Par exemple, en inversant la chaîne que l'on veut matcher. En python, inverser un itérable est beaucoup trop facile:</p>
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span><span class=s2>&quot;1789&quot;</span><span class=p>[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+<span class=s2>&quot;9871&quot;</span>
+</code></pre></div></p>
+<p>Et maintenant ?</p>
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span><span class=kn>import</span> <span class=nn>re</span>
+<span class=o>&gt;&gt;&gt;</span><span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;\d</span><span class=si>{3}</span><span class=s2>&quot;</span><span class=p>,</span><span class=sa>r</span><span class=s2>&quot;\g&lt;0&gt; &quot;</span><span class=p>,</span><span class=nb>str</span><span class=p>(</span><span class=mi>1789</span><span class=p>)[::</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span>
+<span class=mi>987</span> <span class=mi>1</span>
+</code></pre></div></p>
+<p>On a bien séparé les centaines, les dizaines et les unités des milliers. Mais à l'envers. Donc on a juste à retourner la chaîne obtenue:</p>
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span><span class=kn>import</span> <span class=nn>re</span>
+<span class=o>&gt;&gt;&gt;</span><span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;\d</span><span class=si>{3}</span><span class=s2>&quot;</span><span class=p>,</span><span class=sa>r</span><span class=s2>&quot;\g&lt;0&gt; &quot;</span><span class=p>,</span><span class=nb>str</span><span class=p>(</span><span class=mi>1789</span><span class=p>)[::</span><span class=o>-</span><span class=mi>1</span><span class=p>])[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+<span class=mi>1</span> <span class=mi>789</span>
+</code></pre></div></p>
+<p>Et voilà! En prime, deux appelables issus de cette astuce (vous choisissez, fonction ou fonction anonyme):</p>
+<div class=md-fenced-code-tabs id=tab-tab-group-19><input name=tab-group-19 type=radio id=tab-group-19-0_python checked=checked class=code-tab data-lang=python aria-controls=tab-group-19-0_python-panel role=tab><label for=tab-group-19-0_python class=code-tab-label data-lang=python id=tab-group-19-0_python-label>Fonction</label><div class=code-tabpanel role=tabpanel data-lang=python id=tab-group-19-0_python-panel aria-labelledby=tab-group-19-0_python-label><div class=highlight><pre><span></span><code><span class=kn>import</span> <span class=nn>re</span>
+
+<span class=k>def</span> <span class=nf>format_number</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+    <span class=k>if</span> <span class=ow>not</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>x</span><span class=p>,</span><span class=nb>int</span><span class=p>):</span>
+        <span class=k>return</span> <span class=s2>&quot;&quot;</span>
+    <span class=k>return</span> <span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;\d</span><span class=si>{3}</span><span class=s2>&quot;</span><span class=p>,</span><span class=sa>r</span><span class=s2>&quot;\g&lt;0&gt; &quot;</span><span class=p>,</span><span class=nb>str</span><span class=p>(</span><span class=n>x</span><span class=p>)[::</span><span class=o>-</span><span class=mi>1</span><span class=p>])[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</code></pre></div></div><input name=tab-group-19 type=radio id=tab-group-19-1_python class=code-tab data-lang=python aria-controls=tab-group-19-1_python-panel role=tab><label for=tab-group-19-1_python class=code-tab-label data-lang=python id=tab-group-19-1_python-label>Lambda</label><div class=code-tabpanel role=tabpanel data-lang=python id=tab-group-19-1_python-panel aria-labelledby=tab-group-19-1_python-label><div class=highlight><pre><span></span><code><span class=kn>import</span> <span class=nn>re</span>
+
+<span class=n>formatter</span> <span class=o>=</span> <span class=k>lambda</span> <span class=n>x</span><span class=p>:</span><span class=n>re</span><span class=o>.</span><span class=n>sub</span><span class=p>(</span><span class=sa>r</span><span class=s2>&quot;\d</span><span class=si>{3}</span><span class=s2>&quot;</span><span class=p>,</span><span class=sa>r</span><span class=s2>&quot;\g&lt;0&gt; &quot;</span><span class=p>,</span><span class=nb>str</span><span class=p>(</span><span class=n>x</span><span class=p>)[::</span><span class=o>-</span><span class=mi>1</span><span class=p>])[::</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</code></pre></div></div></div>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="https://steampunkislande.github.io/tag/tips.html">tips</a>, <a href="https://steampunkislande.github.io/tag/tricks.html">tricks</a></p>
+        </div>
+
+    <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Footer -->
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                                <ul class="list-inline text-center">
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-circle fa-stack-2x"></i>
+                                                <i class="fa fa-you can add links in your config file fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="fa-stack fa-lg">
+                                                <i class="fa fa-circle fa-stack-2x"></i>
+                                                <i class="fa fa-another social link fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  Charles Monod-Broca
+</p>                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+                <!-- jQuery -->
+                <script src="https://steampunkislande.github.io/theme/js/jquery.min.js"></script>
+
+                <!-- Bootstrap Core JavaScript -->
+                <script src="https://steampunkislande.github.io/theme/js/bootstrap.min.js"></script>
+
+                <!-- Custom Theme JavaScript -->
+                <script src="https://steampunkislande.github.io/theme/js/clean-blog.min.js"></script>
+
+            </body>
+
+</html>

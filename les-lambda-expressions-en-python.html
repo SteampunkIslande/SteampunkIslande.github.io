@@ -22,6 +22,9 @@
     <!-- Personal CSS for nice table -->
     <link href="https://steampunkislande.github.io/theme/css/tableau.css" rel="stylesheet">
 
+    <!-- CSS for markdown-fenced-blocks -->
+    <link href="https://steampunkislande.github.io/theme/css/code-tab.css" rel="stylesheet">
+
     <!-- Code highlight color scheme -->
     <link href="https://steampunkislande.github.io/theme/css/code_blocks/darkly.css" rel="stylesheet">
 
@@ -125,14 +128,12 @@
 <h2>Présentation</h2>
 <p>Cette syntaxe très pratique permet de créer des objets "appelables" sans définir une fonction entière, pour peu que le code a exécuter tienne en une ligne.</p>
 <p>Exemple, avec une fonction qui renvoie deux fois la valeur de son unique paramètre. Avec une fonction:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+    <span class=k>return</span> <span class=mi>2</span><span class=o>*</span><span class=n>x</span>
+</code></pre></div></p>
 <p>Avec une lambda expression:</p>
-<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=n>f</span> <span class=o>=</span> <span class=k>lambda</span> <span class=n>x</span><span class=p>:</span><span class=mi>2</span><span class=o>*</span><span class=n>x</span>
+</code></pre></div></p>
 <p>Quelques différences:</p>
 <ul>
 <li>La lambda expression tient en une seule ligne (alors que définir une fonction demande toujours au minimum deux lignes)</li>
@@ -144,94 +145,84 @@
 <p>Prenons cette liste: <code>l = [("Alice",45), ("Bob",30), ("Charles",12)]</code>.
 Chaque élément de cette liste est un tuple, sous la forme <code>(Prénom, Âge)</code>. </p>
 <p>Mais comment trier cette liste ? Si on ne précise pas, python s'en sort quand même:</p>
-<div class="highlight"><pre><span></span><code><span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Charles&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=n>l</span> <span class=o>=</span> <span class=p>[(</span><span class=s2>&quot;Charles&quot;</span><span class=p>,</span><span class=mi>0</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Bob&quot;</span><span class=p>,</span><span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Alice&quot;</span><span class=p>,</span><span class=mi>4</span><span class=p>)]</span>
+<span class=nb>sorted</span><span class=p>(</span><span class=n>l</span><span class=p>)</span>
+</code></pre></div></p>
 <p>Résultat:</p>
-<div class="highlight"><pre><span></span><code><span class="p">[(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=p>[(</span><span class=s1>&#39;Alice&#39;</span><span class=p>,</span> <span class=mi>4</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Bob&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Charles&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>)]</span>
+</code></pre></div></p>
 <p>Comme vous pouvez constater, la liste est triée uniquement selon le premier élément de chaque tuple.
 Et en cas d'égalité (par exemple si on compare (0,10) et (0,5)), python compare le champ suivant de chaque élément à départager. Dans le cas où on veut comparer (0,10) à (0,5), cela revient à comparer 10 et 5.</p>
 <p>Mais que viennent faire les lambdas dans tout ça ? Eh bien, si vous voulez trier selon le second élément uniquement, il suffit de passer un "appelable" à la fonction sorted. Voyez plutôt:</p>
-<div class="highlight"><pre><span></span><code><span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Charles&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=n>l</span> <span class=o>=</span> <span class=p>[(</span><span class=s2>&quot;Charles&quot;</span><span class=p>,</span><span class=mi>0</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Bob&quot;</span><span class=p>,</span><span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Alice&quot;</span><span class=p>,</span><span class=mi>4</span><span class=p>)]</span>
+<span class=nb>sorted</span><span class=p>(</span><span class=n>l</span><span class=p>,</span><span class=n>key</span><span class=o>=</span><span class=k>lambda</span> <span class=n>e</span><span class=p>:</span><span class=n>e</span><span class=p>[</span><span class=mi>1</span><span class=p>])</span>
+</code></pre></div></p>
 <p>Résultat:</p>
-<div class="highlight"><pre><span></span><code><span class="p">[(</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=p>[(</span><span class=s1>&#39;Charles&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Bob&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Alice&#39;</span><span class=p>,</span> <span class=mi>4</span><span class=p>)]</span>
+</code></pre></div></p>
 <p>Ici, on a passé une lambda expression à la fonction <code>sorted</code>. Cette dernière va donc utiliser cet "appelable" comme clé pour comparer les éléments de l.
 L'idée est que <code>sorted</code> va appeler son paramètre <code>key</code> à chaque fois qu'elle aura besoin de comparer deux éléments. Elle appellera cette fonction avec l'élément "brut" en paramètre, en s'attendant à recevoir une valeur qui lui permettra de réellement comparer les éléments entre eux.</p>
 <p>On aurait tout à fait pu passer par une fonction d'ailleurs. Et pour voir ce qui se passe derrière tout ça, je vous propose cette fonction un peu bavarde:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">my_key</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fonction key appelée avec &quot;</span><span class="p">,</span><span class="n">element</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">element</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<p> <div class=highlight><pre><span></span><code><span class=k>def</span> <span class=nf>my_key</span><span class=p>(</span><span class=n>element</span><span class=p>):</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;Fonction key appelée avec &quot;</span><span class=p>,</span><span class=n>element</span><span class=p>)</span>
+    <span class=k>return</span> <span class=n>element</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
 
-<span class="n">l</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Charles&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="n">my_key</span><span class="p">)</span>
-</code></pre></div>
-
+<span class=n>l</span> <span class=o>=</span> <span class=p>[(</span><span class=s2>&quot;Charles&quot;</span><span class=p>,</span><span class=mi>0</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Bob&quot;</span><span class=p>,</span><span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s2>&quot;Alice&quot;</span><span class=p>,</span><span class=mi>4</span><span class=p>)]</span>
+<span class=nb>sorted</span><span class=p>(</span><span class=n>l</span><span class=p>,</span><span class=n>key</span><span class=o>=</span><span class=n>my_key</span><span class=p>)</span>
+</code></pre></div></p>
 <p>Cette fonction le dit à chaque fois qu'elle est appelée, ce qui nous permet de suivre son utilisation.</p>
 <p>Résultat:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Fonction</span> <span class="n">key</span> <span class="n">appelée</span> <span class="n">avec</span>  <span class="p">(</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">Fonction</span> <span class="n">key</span> <span class="n">appelée</span> <span class="n">avec</span>  <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">Fonction</span> <span class="n">key</span> <span class="n">appelée</span> <span class="n">avec</span>  <span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">Sortie</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Charles&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=n>Fonction</span> <span class=n>key</span> <span class=n>appelée</span> <span class=n>avec</span>  <span class=p>(</span><span class=s1>&#39;Charles&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+<span class=n>Fonction</span> <span class=n>key</span> <span class=n>appelée</span> <span class=n>avec</span>  <span class=p>(</span><span class=s1>&#39;Bob&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span>
+<span class=n>Fonction</span> <span class=n>key</span> <span class=n>appelée</span> <span class=n>avec</span>  <span class=p>(</span><span class=s1>&#39;Alice&#39;</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+<span class=n>Sortie</span><span class=p>:</span> <span class=p>[(</span><span class=s1>&#39;Alice&#39;</span><span class=p>,</span> <span class=mi>4</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Bob&#39;</span><span class=p>,</span> <span class=mi>3</span><span class=p>),</span> <span class=p>(</span><span class=s1>&#39;Charles&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>)]</span>
+</code></pre></div></p>
 <p>Comme vous pouvez l'observer, le paramètre <code>key</code> est appelé pour chaque élément de la liste. Bien sûr, si la liste est plus longue, la fonction sera appelée à chaque fois qu'une comparaison sera nécessaire, et le nombre d'appels dépendra directement de la complexité algorithmique de la fonction de tri. Mais ce n'est pas le sujet de cet article !</p>
 <h2>Les erreurs que vous pourriez rencontrer...</h2>
 <p>Maintenant que vous savez comment utiliser une lambda expression, vous allez probablement vouloir en mettre partout. Malheureusement, dans certains cas, vous pourriez vous retrouver avec un résultat complètement inattendu. Mieux vaut prévenir que guérir, donc. Et voici une situation typique dont j'ai pu faire les frais en participant au développement de cutevariant.</p>
 <p>Considérez ce morceau de code en python:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Déclarer un dictionnaire vide</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># Assigne à la clé i une lambda expression qui affiche i.</span>
-    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=c1># Déclarer un dictionnaire vide</span>
+<span class=n>d</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10</span><span class=p>):</span>
+    <span class=c1># Assigne à la clé i une lambda expression qui affiche i.</span>
+    <span class=n>d</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=k>lambda</span><span class=p>:</span><span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</code></pre></div></p>
 <p>Que fait ce code, et pourquoi ne ferait-il pas ce qu'on attend de lui ?
 À première vue, d est un dictionnaire dont les clés sont des entiers (de 0 à 9), et les valeurs de simples lambda expressions. Intuitivement, on pourrait penser que <code>print(i)</code> devrait afficher la même valeur que la clé à laquelle l'expression lambda est associée. Vraiment, il n'y a aucune raison...</p>
 <p>Essayons:</p>
-<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]()</span>
-<span class="mi">9</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]()</span>
-<span class="mi">9</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]()</span>
-<span class="mi">9</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=o>&gt;&gt;&gt;</span> <span class=n>d</span><span class=p>[</span><span class=mi>0</span><span class=p>]()</span>
+<span class=mi>9</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>d</span><span class=p>[</span><span class=mi>1</span><span class=p>]()</span>
+<span class=mi>9</span>
+<span class=o>&gt;&gt;&gt;</span> <span class=n>d</span><span class=p>[</span><span class=mi>2</span><span class=p>]()</span>
+<span class=mi>9</span>
+</code></pre></div></p>
 <p>Ce qui s'est passé est plutôt clair, python évalue toutes les lambdas qui font référence à la variable <code>i</code> avec la dernière valeur qu'elle a prise...
 Et malheureusement, ce comportement est parfaitement normal pour une simple lambda expression. En effet, en python, les lambda expressions sont incapables de capturer les variables locales au moment de leur déclaration ! Dans notre exemple, tout se passe comme si python évaluait la lambda expression une fois la déclaration terminée. </p>
 <p>Mais commment contourner ce problème, me demanderez-vous ?</p>
 <h2>... Et comment les corriger</h2>
 <p>Reprenons l'exemple plus haut.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Déclarer un dictionnaire vide</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># Assigne à la clé i une lambda expression qui affiche i.</span>
-    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=c1># Déclarer un dictionnaire vide</span>
+<span class=n>d</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10</span><span class=p>):</span>
+    <span class=c1># Assigne à la clé i une lambda expression qui affiche i.</span>
+    <span class=n>d</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=k>lambda</span><span class=p>:</span><span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</code></pre></div></p>
 <p>En réalité, dans la plupart des cas que j'ai rencontrés, j'avais besoin de garder un registre des "appelables" existants, et de leur dire pourquoi/par qui ils ont été appelés (grâce à un numéro ou à un nom). <code>d</code> sert donc ici de registre dans la démonstration, et la lambda expression est ce fameux "appelable".
 Le rôle de <code>d</code> est donc d'associer une clé à un "appelable".</p>
 <p>Maintenant, voici une solution possible afin que chaque "appelable" recoive la valeur qui leur est associée.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="c1"># Déclarer un dictionnaire vide</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># Assigne à la clé i une lambda expression qui affiche i.</span>
-    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">i</span><span class="p">)</span>
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=kn>from</span> <span class=nn>functools</span> <span class=kn>import</span> <span class=n>partial</span>
+<span class=c1># Déclarer un dictionnaire vide</span>
+<span class=n>d</span> <span class=o>=</span> <span class=p>{}</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10</span><span class=p>):</span>
+    <span class=c1># Assigne à la clé i une lambda expression qui affiche i.</span>
+    <span class=n>d</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>partial</span><span class=p>(</span><span class=k>lambda</span> <span class=n>i</span><span class=p>:</span><span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=p>),</span><span class=n>i</span><span class=p>)</span>
+</code></pre></div></p>
 <p>Un <code>partial</code>, c'est un "appelable" qui prépare un appel de fonction. Par exemple, vous voulez capturer la valeur d'une variable locale à un instant t. Mais vous voulez appeler la fonction plus tard. Premier paramètre de partial: la fonction. Chaque argument supplémentaire de partial sera passé en argument à la fonction que vous voulez appeler à la fin. Vous pouvez aussi passez des arguments nommés, dans ce cas l'ordre n'a aucune importance (tant que la fonction à appeler est le premier argument de partial).</p>
 <p>Un dessin vaut mieux qu'un long discours:</p>
 <p><img alt="How partial is used" src="../images/lambda_expressions_partial.png"></p>
 <p>Voilà ! Maintenant, vous savez comment utiliser les lambda expressions et éviter les pièges !
-J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur <a href="https://github.com/SteampunkIslande/blog/issues" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="GitHub">GitHub</a> (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).</p>
+J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur <a href="https://github.com/SteampunkIslande/blog/issues" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="GitHub">GitHub</a>{target="_blank"} (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).</p>
     </article>
 
         <div class="tags">

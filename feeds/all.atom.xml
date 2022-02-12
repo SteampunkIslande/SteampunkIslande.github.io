@@ -1,5 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Let's tame that python together</title><link href="https://steampunkislande.github.io/" rel="alternate"></link><link href="https://steampunkislande.github.io/feeds/all.atom.xml" rel="self"></link><id>https://steampunkislande.github.io/</id><updated>2021-12-30T00:00:00+01:00</updated><entry><title>Les expressions régulières (regex)</title><link href="https://steampunkislande.github.io/les-expressions-regulieres.html" rel="alternate"></link><published>2021-12-30T00:00:00+01:00</published><updated>2021-12-30T00:00:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-30:/les-expressions-regulieres.html</id><summary type="html">&lt;p&gt;Lorsque vous recherchez une expression dans un texte, il vous est sûrement déjà arrivé de réaliser que ce que vous voulez trouver correspond en réalité à un motif.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Let's tame that python together</title><link href="https://steampunkislande.github.io/" rel="alternate"></link><link href="https://steampunkislande.github.io/feeds/all.atom.xml" rel="self"></link><id>https://steampunkislande.github.io/</id><updated>2022-02-12T23:51:00+01:00</updated><entry><title>Astuces en vrac</title><link href="https://steampunkislande.github.io/astuces-en-vrac.html" rel="alternate"></link><published>2021-12-31T12:00:00+01:00</published><updated>2022-02-12T23:51:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-31:/astuces-en-vrac.html</id><summary type="html">&lt;p&gt;Modified: une ligne que je ne veux pas voir modifiée&lt;/p&gt;
+&lt;p&gt;Python est sûrement le langage le plus élégant que je connaisse, et j'espère que cette page de trucs et astuces vous en convaincra également. Sans plus tarder, une liste non exhaustive, non ordonnée, de conseils pratiques pour gagner du temps …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Modified: une ligne que je ne veux pas voir modifiée&lt;/p&gt;
+&lt;p&gt;Python est sûrement le langage le plus élégant que je connaisse, et j'espère que cette page de trucs et astuces vous en convaincra également. Sans plus tarder, une liste non exhaustive, non ordonnée, de conseils pratiques pour gagner du temps de développement.&lt;/p&gt;
+&lt;h1&gt;Empaqueter et désempaqueter des listes&lt;/h1&gt;
+&lt;p&gt;En python, vous pouvez empaqueter et désempaqueter des listes, avec l'opérateur &lt;code&gt;*&lt;/code&gt;.
+Il fonctionne de la même manière dans les deux sens. Exemple avec cette fonction:&lt;/p&gt;
+&lt;h2&gt;Empaqueter une liste d'arguments dans une liste&lt;/h2&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;args&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;args&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Pour appeler cette fonction, vous pouvez passez autant d'arguments que vous voulez. À l'exécution:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Ainsi, avec cette étoile, vous avez empaqueté la liste des arguments dans une liste appelée args. Ce qui vous permet de passer autant d'arguments positionnels que vous voulez, et pour y accéder vous pouvez considérer &lt;code&gt;args&lt;/code&gt; comme n'importe quelle liste. Et vous n'êtes pas obligé de l'appeler &lt;code&gt;args&lt;/code&gt;, c'est juste une convention.&lt;/p&gt;
+&lt;h2&gt;Désempaqueter une liste en liste d'arguments&lt;/h2&gt;
+&lt;p&gt;À l'inverse, vous pouvez désempaqueter une liste. Prenons cette nouvelle fonction, qui prend trois arguments en paramère:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;c&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;c&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=n&gt;l&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Dans ce cas, on doit passer plusieurs arguments à f. L'approche naïve serait:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;],&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;],&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Ça fonctionne, bien sûr, mais ce n'est pas très pratique. Notamment si vous avez construit une liste vraiment longue, accéder aux éléments un par un peut être fastidieux et source d'erreurs.&lt;/p&gt;
+&lt;p&gt;Exemple:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;ma_fonction&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;first&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;second&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;third&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;default_value&amp;#39;&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=c1&gt;# Peu importe ce que fait la fonction elle prend trois arguments&lt;/span&gt;
+    &lt;span class=o&gt;...&lt;/span&gt;
+
+&lt;span class=k&gt;with&lt;/span&gt; &lt;span class=nb&gt;open&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;example&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt; &lt;span class=k&gt;as&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+    &lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=c1&gt;# Chaque ligne contient bien les arguments que je veux, séparés par des virgules&lt;/span&gt;
+        &lt;span class=n&gt;mes_arguments&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;split&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+        &lt;span class=n&gt;ma_fonction&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;mes_arguments&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;],&lt;/span&gt;&lt;span class=n&gt;mes_arguments&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;],&lt;/span&gt;&lt;span class=n&gt;mes_arguments&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Beaucoup trop long... Imaginez si &lt;code&gt;ma_fonction&lt;/code&gt; prenait plus d'arguments... Vous allez en taper du code !
+Avec le désempaquetage des listes, et son opérateur &lt;code&gt;*&lt;/code&gt;, vous pouvez faire l'inverse de ce qu'on a vu plus haut, à savoir décomposer une liste en arguments.&lt;/p&gt;
+&lt;p&gt;Ce qui donne:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;ma_fonction&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;first&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;second&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;third&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;default_value&amp;#39;&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=c1&gt;# Peu importe ce que fait la fonction elle prend trois arguments&lt;/span&gt;
+    &lt;span class=o&gt;...&lt;/span&gt;
+
+&lt;span class=k&gt;with&lt;/span&gt; &lt;span class=nb&gt;open&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;example&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt; &lt;span class=k&gt;as&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+    &lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=c1&gt;# Chaque ligne contient bien les arguments que je veux, séparés par des virgules&lt;/span&gt;
+        &lt;span class=n&gt;ma_fonction&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;line&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;split&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class=p&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Et voilà, &lt;code&gt;line.split()&lt;/code&gt; vous donne une liste, et vous la transformez en arguments positionnels avec le seul opérateur &lt;code&gt;*&lt;/code&gt;. Plus lisible et bien plus efficace.&lt;/p&gt;
+&lt;h2&gt;Pour aller plus loin&lt;/h2&gt;
+&lt;h3&gt;Désempaqueter dans un assignement&lt;/h3&gt;
+&lt;p&gt;Il est aussi possible d'empaqueter et de désempaqueter des listes dans des expressions d'assignement.&lt;/p&gt;
+&lt;p&gt;Typiquement, si vous avez un CSV avec un nombre de colonnes variable. Exemple:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Prénom, Âge, Professions
+Boby, 24, Bioinformaticien
+Alexandre, 27, Acteur, Réalisateur, Scénariste, Photographe, Musicien
+Roland, 23, Community Manager, Chômeur
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Notez qu'une même personne peut avoir un nombre variable de professions. Or si vous voulez extraire du CSV une liste de personnes et que vous voulez pour chaque personne son nom, son âge et ses professions, comment allez-vous vous y prendre ?&lt;/p&gt;
+&lt;p&gt;Une solution possible est décrite ci-dessous:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;personnes&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;[]&lt;/span&gt;
+&lt;span class=k&gt;with&lt;/span&gt; &lt;span class=nb&gt;open&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;exemple.csv&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt; &lt;span class=k&gt;as&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+    &lt;span class=n&gt;header&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=nb&gt;next&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+    &lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=c1&gt;# *prenoms permet d&amp;#39;extraire sous forme de liste le &amp;#39;reste&amp;#39; du désempaquetage&lt;/span&gt;
+        &lt;span class=n&gt;prenom&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;age&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;professions&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;split&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+        &lt;span class=n&gt;personne&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Prénom&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=n&gt;prenom&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;Âge&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=n&gt;age&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;Profession(s)&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=n&gt;professions&lt;/span&gt;&lt;span class=p&gt;}&lt;/span&gt;
+        &lt;span class=n&gt;personnes&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;append&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;personne&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Notez que dans cette approche, la magie opère de manière très discrète: juste &lt;code&gt;*professions&lt;/code&gt; qui permet de récupérer tout ce qui n'a pas pu être désempaqueté.
+Vous pouvez tester ce petit script en reprenant le CSV proposé plus haut, et en affichant la variable &lt;code&gt;personnes&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Remarque:&lt;/p&gt;
+&lt;p&gt;Il est possible de placer cette wildcard où vous voulez dans l'assignement, mais une seule fois maximum !
+Exemple:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;prenom&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;nom&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;notes&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;age&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;split&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;prenoms&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;nom&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=n&gt;age&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=n&gt;line&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;split&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h3&gt;Passer un dictionnaire en arguments nommés&lt;/h3&gt;
+&lt;p&gt;Dernier cas de figure, vous avez un dictionnaire dont les clés correspondent parfaitement aux noms des arguments de votre fonction.&lt;/p&gt;
+&lt;p&gt;Exemple:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;d&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;}&lt;/span&gt;
+&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=o&gt;+&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Pour passer votre dictionnaire en argument de f, vous pouvez le désempaqueter avec un opérateur similaire à celui pour désempaqueter une liste. Comme ceci:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;d&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;}&lt;/span&gt;
+&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=o&gt;+&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;L'opérateur &lt;code&gt;**&lt;/code&gt; permet de transformer un dictionnaire en arguments nommés.&lt;/p&gt;
+&lt;h3&gt;Accepter n'importe quel argument nommé dans une fonction&lt;/h3&gt;
+&lt;p&gt;Dans une fonction, pour accepter n'importe quel argument nommé:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=k&gt;if&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;named argument a was passed to f :&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+    &lt;span class=k&gt;if&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;named argument b was passed to f :&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Notez que la syntaxe est très proche de celle utilisée pour les arguments positionnels. On peut même les mélanger:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;args&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;f&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Args. positionnels:&lt;/span&gt;&lt;span class=se&gt;\n&lt;/span&gt;&lt;span class=si&gt;{&lt;/span&gt;&lt;span class=n&gt;args&lt;/span&gt;&lt;span class=si&gt;}&lt;/span&gt;&lt;span class=se&gt;\n&lt;/span&gt;&lt;span class=s2&gt;Args. nommés:&lt;/span&gt;&lt;span class=se&gt;\n&lt;/span&gt;&lt;span class=si&gt;{&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=si&gt;}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;y&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;z&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+
+&lt;span class=c1&gt;# Résultat:&lt;/span&gt;
+&lt;span class=n&gt;Args&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt; &lt;span class=n&gt;positionnels&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=n&gt;Args&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt; &lt;span class=n&gt;nommés&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+&lt;span class=p&gt;{&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=s1&gt;&amp;#39;y&amp;#39;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt; &lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=s1&gt;&amp;#39;z&amp;#39;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt; &lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h3&gt;Quelques pièges à éviter&lt;/h3&gt;
+&lt;p&gt;Utiliser &lt;code&gt;*args&lt;/code&gt; et &lt;code&gt;**kwargs&lt;/code&gt; dans vos fonctions les rendent beaucoup plus difficile à débugger. Utilisez-les uniquement si vous savez ce que vous faites.
+Un des gros inconvénients qui me vient en premier est l'absence d'erreur en cas de faute de frappe lorsque vous faites appel à un argument nommé qui n'est pas en paramètre d'une fonction. Exemple:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=k&gt;if&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;color&amp;quot;&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=n&gt;kwargs&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;
+        &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;color set&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+
+&lt;span class=c1&gt;#J&amp;#39;ai mal orthographié color&lt;/span&gt;
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;6&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;colour&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Si vous exécutez ce code, il n'y aura aucune erreur, bien que vous vous attendiez à voir affiché &lt;code&gt;color set&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Le code est donc beaucoup moins facile à débugger puisque vous pensiez avoir fourni un argument, qu'il n'y a pas d'erreur, et que vous n'avez quand même pas le résultat attendu.&lt;/p&gt;
+&lt;p&gt;Dans l'autre sens, en revanche, je recommande fortement l'utilisation du désempaquetage de dictionnaire. Avec un mini piège cependant...
+Pour une fonction documentée:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;a&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;b&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;c&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=o&gt;...&lt;/span&gt;
+
+&lt;span class=n&gt;d&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=p&gt;{&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;5&lt;/span&gt;&lt;span class=p&gt;}&lt;/span&gt;
+&lt;span class=c1&gt;# Tout marche...&lt;/span&gt;
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+
+&lt;span class=c1&gt;#... &amp;#39;a&amp;#39; étant le premier argument, mais aussi présent dans d&lt;/span&gt;
+&lt;span class=c1&gt;#... quelle valeur doit-il prendre ?&lt;/span&gt;
+&lt;span class=n&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;6&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=o&gt;**&lt;/span&gt;&lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Ce que me dit IPython:&lt;/p&gt;
+&lt;pre&gt;&lt;font color="#CC0000"&gt;TypeError&lt;/font&gt;: f() got multiple values for argument &amp;apos;a&amp;apos;&lt;/pre&gt;
+
+&lt;p&gt;Ce qui est normal, vous avez passé une valeur à &lt;code&gt;a&lt;/code&gt; comme argument positionnel, puis le reste a été passé en arguments nommés. Comme &lt;code&gt;a&lt;/code&gt; est aussi défini dans &lt;code&gt;d&lt;/code&gt;, python ne sait pas quelle valeur choisir et vous renvoie une erreur.&lt;/p&gt;
+&lt;h1&gt;Formater l'affichage d'un nombre entier avec les expressions régulières&lt;/h1&gt;
+&lt;p&gt;Encore un cas pratique des expressions régulières !&lt;/p&gt;
+&lt;p&gt;Question: Comment formater un nombre entier en insérant un espace tous les trois chiffres (mais de droite à gauche) ?&lt;/p&gt;
+&lt;p&gt;Réponse: Avec une expression régulière et la fonction &lt;code&gt;sub&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Première étape: comprendre la fonction &lt;code&gt;re.sub&lt;/code&gt;. En python:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=nn&gt;re&lt;/span&gt;
+&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=n&gt;re&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;sub&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\d&lt;/span&gt;&lt;span class=si&gt;{3}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\g&amp;lt;0&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;str&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1789&lt;/span&gt;&lt;span class=p&gt;))&lt;/span&gt;
+&lt;span class=mi&gt;178&lt;/span&gt; &lt;span class=mi&gt;9&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;L'expression régulière ci-dessus recherche des groupes de trois lettres. Il n'y a pas de groupe de capture, mais dans la chaîne de remplacement, on demande le groupe 0 suivi d'un espace. Rappelez-vous, si une expression régulière matche, le groupe de capture 0 représente le match complet. Dans notre exemple, il y a quatre chiffres. Donc il y a un seul match de trois lettres, situé au début. Ça, on ne peut rien y faire, c'est le fonctionnement normal des expressions régulières.&lt;/p&gt;
+&lt;p&gt;Mais on peut ruser. Par exemple, en inversant la chaîne que l'on veut matcher. En python, inverser un itérable est beaucoup trop facile:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;1789&amp;quot;&lt;/span&gt;&lt;span class=p&gt;[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;span class=s2&gt;&amp;quot;9871&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Et maintenant ?&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=nn&gt;re&lt;/span&gt;
+&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=n&gt;re&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;sub&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\d&lt;/span&gt;&lt;span class=si&gt;{3}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\g&amp;lt;0&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;str&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1789&lt;/span&gt;&lt;span class=p&gt;)[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+&lt;span class=mi&gt;987&lt;/span&gt; &lt;span class=mi&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;On a bien séparé les centaines, les dizaines et les unités des milliers. Mais à l'envers. Donc on a juste à retourner la chaîne obtenue:&lt;/p&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=nn&gt;re&lt;/span&gt;
+&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=n&gt;re&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;sub&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\d&lt;/span&gt;&lt;span class=si&gt;{3}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\g&amp;lt;0&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;str&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;1789&lt;/span&gt;&lt;span class=p&gt;)[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;])[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;span class=mi&gt;1&lt;/span&gt; &lt;span class=mi&gt;789&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Et voilà! En prime, deux appelables issus de cette astuce (vous choisissez, fonction ou fonction anonyme):&lt;/p&gt;
+&lt;div class=md-fenced-code-tabs id=tab-tab-group-19&gt;&lt;input name=tab-group-19 type=radio id=tab-group-19-0_python checked=checked class=code-tab data-lang=python aria-controls=tab-group-19-0_python-panel role=tab&gt;&lt;label for=tab-group-19-0_python class=code-tab-label data-lang=python id=tab-group-19-0_python-label&gt;Fonction&lt;/label&gt;&lt;div class=code-tabpanel role=tabpanel data-lang=python id=tab-group-19-0_python-panel aria-labelledby=tab-group-19-0_python-label&gt;&lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=nn&gt;re&lt;/span&gt;
+
+&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;format_number&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=k&gt;if&lt;/span&gt; &lt;span class=ow&gt;not&lt;/span&gt; &lt;span class=nb&gt;isinstance&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;int&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+        &lt;span class=k&gt;return&lt;/span&gt; &lt;span class=s2&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=k&gt;return&lt;/span&gt; &lt;span class=n&gt;re&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;sub&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\d&lt;/span&gt;&lt;span class=si&gt;{3}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\g&amp;lt;0&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;str&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;)[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;])[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;input name=tab-group-19 type=radio id=tab-group-19-1_python class=code-tab data-lang=python aria-controls=tab-group-19-1_python-panel role=tab&gt;&lt;label for=tab-group-19-1_python class=code-tab-label data-lang=python id=tab-group-19-1_python-label&gt;Lambda&lt;/label&gt;&lt;div class=code-tabpanel role=tabpanel data-lang=python id=tab-group-19-1_python-panel aria-labelledby=tab-group-19-1_python-label&gt;&lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=nn&gt;re&lt;/span&gt;
+
+&lt;span class=n&gt;formatter&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=k&gt;lambda&lt;/span&gt; &lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=n&gt;re&lt;/span&gt;&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=n&gt;sub&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\d&lt;/span&gt;&lt;span class=si&gt;{3}&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=sa&gt;r&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;\g&amp;lt;0&amp;gt; &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=nb&gt;str&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;)[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;])[::&lt;/span&gt;&lt;span class=o&gt;-&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content><category term="Python"></category><category term="tips"></category><category term="tricks"></category></entry><entry><title>Les expressions régulières (regex)</title><link href="https://steampunkislande.github.io/les-expressions-regulieres.html" rel="alternate"></link><published>2021-12-30T00:00:00+01:00</published><updated>2021-12-30T00:00:00+01:00</updated><author><name>Charles Monod-Broca</name></author><id>tag:steampunkislande.github.io,2021-12-30:/les-expressions-regulieres.html</id><summary type="html">&lt;p&gt;Lorsque vous recherchez une expression dans un texte, il vous est sûrement déjà arrivé de réaliser que ce que vous voulez trouver correspond en réalité à un motif.&lt;/p&gt;
 &lt;p&gt;Par exemple, vous recherchez une adresse mail (inconnue) dans un document particulièrement long. Ou un numéro de téléphone. Ou tout autre texte …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lorsque vous recherchez une expression dans un texte, il vous est sûrement déjà arrivé de réaliser que ce que vous voulez trouver correspond en réalité à un motif.&lt;/p&gt;
 &lt;p&gt;Par exemple, vous recherchez une adresse mail (inconnue) dans un document particulièrement long. Ou un numéro de téléphone. Ou tout autre texte dont vous ne connaissez pas à l'avance le contenu, mais seulement la forme, le motif. Pour une adresse mail par exemple, ce sera le nom de l'adresse, suivi d'un &lt;code&gt;@&lt;/code&gt;, puis d'un nom de domaine (sous la forme &lt;code&gt;example.com&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Bien sûr, cet exemple est très simplifié, &lt;a href="https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="voici pour info"&gt;voici pour info&lt;/a&gt; comment valider une adresse mail en se pliant aux standards en vigueur... Mais ce sera suffisant pour trouver n'importe quelle adresse mail plausible.&lt;/p&gt;
@@ -22,19 +199,16 @@
 &lt;h3&gt;Numéro de téléphone français&lt;/h3&gt;
 &lt;p&gt;La première chose qui effraie la plupart des débutants, c'est la taille de certaines expressions régulières. Des dizaines de caractères à la suite, sans saut de ligne, qui, sans documentation, sont tout sauf explicites. Et au fond, même avec un bon entraînement, lire et comprendre une expression régulière que l'on n'a pas soi-même écrite peut être difficile.&lt;/p&gt;
 &lt;p&gt;Mais commençons ! Voici par exemple une expression régulière pour trouver un numéro de téléphone en France:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Décomposons cette regex. Entre parenthèses, on indique que l'on veut "capturer" le contenu du motif trouvé à l'intérieur. Ici, c'est &lt;code&gt;0[1-79]&lt;/code&gt;.
 Et pour expliquer ce motif, on a seulement besoin de comprendre les classes de caractères. Ici, &lt;code&gt;0[1-79]&lt;/code&gt; recherche littéralement un 0, suivi d'un nombre soit entre 1 et 7 (signifié par le tiret &lt;code&gt;-&lt;/code&gt;) ou encore un &lt;code&gt;9&lt;/code&gt;. Donc les crochets &lt;code&gt;[]&lt;/code&gt; permettent de trouver un caractère parmi ceux indiqués, avec la possibilité de donner des intervalles.&lt;/p&gt;
 &lt;p&gt;Exemple:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZ]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Va matcher n'importe quelle lettre, minuscule ou majuscule, mais sans accent. Pour ajouter quelques accents:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZéèêàù]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZéèêàù]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Maintenant que vous avez compris que &lt;code&gt;(0[1-79])&lt;/code&gt; capturait les deux premier chiffres d'un numéro de téléphone français, passons à la suite de l'expression.&lt;/p&gt;
 &lt;p&gt;Nous avons, après ce premier groupe de capture, &lt;code&gt;.?&lt;/code&gt;. Le point est un caractère spécial qui matche n'importe quel caractère (sauf les retours à la ligne).
 Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il signifie zéro ou un. Il s'écrit aussi &lt;code&gt;{0,1}&lt;/code&gt;, qui est la syntaxe complète des quantificateurs. Alors pourquoi chercher un caractère optionnel juste après les premiers chiffres ? Simplement parce que certaines personnes ajoutent un caractère tous les deux chiffres quand ils donnent leur numéro de téléphone. Certains ne séparent pas, d'autres mettent un point, d'autres encore un slash... Bref on pourrait aussi écrire &lt;code&gt;[/.]?&lt;/code&gt;, mais ici on veut prévoir tous les cas de figure. Notez ici qu'entre les crochets, pas besoin d'échapper le point. En effet, dans une classe de caractère, ajouter une telle "carte blanche" n'aurait aucun sens.&lt;/p&gt;
@@ -43,9 +217,8 @@ Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il
 &lt;p&gt;Et voilà comment interpréter une expression régulière !&lt;/p&gt;
 &lt;h3&gt;Adresse mail&lt;/h3&gt;
 &lt;p&gt;Autre exemple, pour une adresse électronique:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(\S+)@(\S+)\.(\S+)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(\S+)@(\S+)\.(\S+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Cette regex fait apparaître une méta séquence que je ne vous ai pas présenté plus haut, les espaces. Notez que &lt;code&gt;\s&lt;/code&gt; matche n'importe quel caractère d'espace (tabulation, espace, retour à la ligne, et autres caractères ésotériques qui peuvent vous donner des bugs invisibles ^^).&lt;/p&gt;
 &lt;p&gt;À l'inverse, &lt;code&gt;\S&lt;/code&gt; matche tout caractère qui n'est pas un espace. Donc cette regex n'exclut pas beaucoup d'adresses mail invalides, mais trouvera la plupart des adresses mail plausibles.&lt;/p&gt;
 &lt;p&gt;Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.&lt;/p&gt;
@@ -90,14 +263,12 @@ Toutes les adresses mail valides seront détectées par ce motif, mais tous les 
 &lt;p&gt;Pour commencer, vous pouvez "ancrer" votre expression régulière dans le texte à rechercher. &lt;/p&gt;
 &lt;p&gt;Pour cela, vous avez deux opérateurs: &lt;code&gt;^&lt;/code&gt; et &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Pour trouver un morceau de texte qui commence par votre motif:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;^Les chiens sont (.+)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;^Les chiens sont (.+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Pour trouver le motif ci-dessus, toutes les lignes commençant par &lt;code&gt;Les chiens sont&lt;/code&gt; vont être trouvées. Puis ce qui suit sera capturé dans le groupe 1, le motif étant la carte blanche, répétée autant de fois que possible.&lt;/p&gt;
 &lt;p&gt;De même, vous pouvez chercher un motif qui termine une ligne, dans ce cas:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(.+) intelligents\.$
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;.+&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;&lt;span class=w&gt; &lt;/span&gt;&lt;span class=nv&gt;intelligents&lt;/span&gt;\&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=p&gt;$&lt;/span&gt;&lt;span class=w&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Dans cette situtation, toutes les lignes finissant par &lt;code&gt;inteeligents.&lt;/code&gt; seront trouvées, et ce qui précède sera capturé dans le groupe 1.&lt;/p&gt;
 &lt;p&gt;Pour finir, construire une expression régulière, c'est juste définir l'aspect d'un motif en utilisant les trois éléments vus plus haut: capturer ce qui vous intéresse, définir les valeurs possibles avec des classes de caractères, et quantifier ces dernières.&lt;/p&gt;
 &lt;p&gt;Exemple pour trouver dans un fichier de configuration, toutes les variables contenant &lt;code&gt;site&lt;/code&gt;:
@@ -119,14 +290,12 @@ Toutes les adresses mail valides seront détectées par ce motif, mais tous les 
 &lt;h2&gt;Présentation&lt;/h2&gt;
 &lt;p&gt;Cette syntaxe très pratique permet de créer des objets "appelables" sans définir une fonction entière, pour peu que le code a exécuter tienne en une ligne.&lt;/p&gt;
 &lt;p&gt;Exemple, avec une fonction qui renvoie deux fois la valeur de son unique paramètre. Avec une fonction:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;f&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=k&gt;return&lt;/span&gt; &lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Avec une lambda expression:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;f&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=k&gt;lambda&lt;/span&gt; &lt;span class=n&gt;x&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=o&gt;*&lt;/span&gt;&lt;span class=n&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Quelques différences:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;La lambda expression tient en une seule ligne (alors que définir une fonction demande toujours au minimum deux lignes)&lt;/li&gt;
@@ -138,91 +307,81 @@ Toutes les adresses mail valides seront détectées par ce motif, mais tous les 
 &lt;p&gt;Prenons cette liste: &lt;code&gt;l = [("Alice",45), ("Bob",30), ("Charles",12)]&lt;/code&gt;.
 Chaque élément de cette liste est un tuple, sous la forme &lt;code&gt;(Prénom, Âge)&lt;/code&gt;. &lt;/p&gt;
 &lt;p&gt;Mais comment trier cette liste ? Si on ne précise pas, python s'en sort quand même:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;l&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;span class=nb&gt;sorted&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Résultat:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Comme vous pouvez constater, la liste est triée uniquement selon le premier élément de chaque tuple.
 Et en cas d'égalité (par exemple si on compare (0,10) et (0,5)), python compare le champ suivant de chaque élément à départager. Dans le cas où on veut comparer (0,10) à (0,5), cela revient à comparer 10 et 5.&lt;/p&gt;
 &lt;p&gt;Mais que viennent faire les lambdas dans tout ça ? Eh bien, si vous voulez trier selon le second élément uniquement, il suffit de passer un "appelable" à la fonction sorted. Voyez plutôt:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;l&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;span class=nb&gt;sorted&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;key&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=k&gt;lambda&lt;/span&gt; &lt;span class=n&gt;e&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=n&gt;e&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Résultat:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Ici, on a passé une lambda expression à la fonction &lt;code&gt;sorted&lt;/code&gt;. Cette dernière va donc utiliser cet "appelable" comme clé pour comparer les éléments de l.
 L'idée est que &lt;code&gt;sorted&lt;/code&gt; va appeler son paramètre &lt;code&gt;key&lt;/code&gt; à chaque fois qu'elle aura besoin de comparer deux éléments. Elle appellera cette fonction avec l'élément "brut" en paramètre, en s'attendant à recevoir une valeur qui lui permettra de réellement comparer les éléments entre eux.&lt;/p&gt;
 &lt;p&gt;On aurait tout à fait pu passer par une fonction d'ailleurs. Et pour voir ce qui se passe derrière tout ça, je vous propose cette fonction un peu bavarde:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Fonction key appelée avec &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=k&gt;def&lt;/span&gt; &lt;span class=nf&gt;my_key&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;element&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Fonction key appelée avec &amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;element&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+    &lt;span class=k&gt;return&lt;/span&gt; &lt;span class=n&gt;element&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt;
 
-&lt;span class="n"&gt;l&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;my_key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;span class=n&gt;l&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Charles&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s2&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;span class=nb&gt;sorted&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;l&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt;&lt;span class=n&gt;key&lt;/span&gt;&lt;span class=o&gt;=&lt;/span&gt;&lt;span class=n&gt;my_key&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Cette fonction le dit à chaque fois qu'elle est appelée, ce qui nous permet de suivre son utilisation.&lt;/p&gt;
 &lt;p&gt;Résultat:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Fonction&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;appelée&lt;/span&gt; &lt;span class="n"&gt;avec&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Fonction&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;appelée&lt;/span&gt; &lt;span class="n"&gt;avec&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Fonction&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="n"&gt;appelée&lt;/span&gt; &lt;span class="n"&gt;avec&lt;/span&gt;  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;Sortie&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=n&gt;Fonction&lt;/span&gt; &lt;span class=n&gt;key&lt;/span&gt; &lt;span class=n&gt;appelée&lt;/span&gt; &lt;span class=n&gt;avec&lt;/span&gt;  &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=n&gt;Fonction&lt;/span&gt; &lt;span class=n&gt;key&lt;/span&gt; &lt;span class=n&gt;appelée&lt;/span&gt; &lt;span class=n&gt;avec&lt;/span&gt;  &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=n&gt;Fonction&lt;/span&gt; &lt;span class=n&gt;key&lt;/span&gt; &lt;span class=n&gt;appelée&lt;/span&gt; &lt;span class=n&gt;avec&lt;/span&gt;  &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;span class=n&gt;Sortie&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt; &lt;span class=p&gt;[(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Alice&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;4&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Bob&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;3&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt; &lt;span class=p&gt;(&lt;/span&gt;&lt;span class=s1&gt;&amp;#39;Charles&amp;#39;&lt;/span&gt;&lt;span class=p&gt;,&lt;/span&gt; &lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Comme vous pouvez l'observer, le paramètre &lt;code&gt;key&lt;/code&gt; est appelé pour chaque élément de la liste. Bien sûr, si la liste est plus longue, la fonction sera appelée à chaque fois qu'une comparaison sera nécessaire, et le nombre d'appels dépendra directement de la complexité algorithmique de la fonction de tri. Mais ce n'est pas le sujet de cet article !&lt;/p&gt;
 &lt;h2&gt;Les erreurs que vous pourriez rencontrer...&lt;/h2&gt;
 &lt;p&gt;Maintenant que vous savez comment utiliser une lambda expression, vous allez probablement vouloir en mettre partout. Malheureusement, dans certains cas, vous pourriez vous retrouver avec un résultat complètement inattendu. Mieux vaut prévenir que guérir, donc. Et voici une situation typique dont j'ai pu faire les frais en participant au développement de cutevariant.&lt;/p&gt;
 &lt;p&gt;Considérez ce morceau de code en python:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
-&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
-    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=c1&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
+&lt;span class=n&gt;d&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{}&lt;/span&gt;
+&lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;i&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=nb&gt;range&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;10&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=c1&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
+    &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=k&gt;lambda&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Que fait ce code, et pourquoi ne ferait-il pas ce qu'on attend de lui ?
 À première vue, d est un dictionnaire dont les clés sont des entiers (de 0 à 9), et les valeurs de simples lambda expressions. Intuitivement, on pourrait penser que &lt;code&gt;print(i)&lt;/code&gt; devrait afficher la même valeur que la clé à laquelle l'expression lambda est associée. Vraiment, il n'y a aucune raison...&lt;/p&gt;
 &lt;p&gt;Essayons:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]()&lt;/span&gt;
-&lt;span class="mi"&gt;9&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]()&lt;/span&gt;
-&lt;span class="mi"&gt;9&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]()&lt;/span&gt;
-&lt;span class="mi"&gt;9&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;0&lt;/span&gt;&lt;span class=p&gt;]()&lt;/span&gt;
+&lt;span class=mi&gt;9&lt;/span&gt;
+&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;1&lt;/span&gt;&lt;span class=p&gt;]()&lt;/span&gt;
+&lt;span class=mi&gt;9&lt;/span&gt;
+&lt;span class=o&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=mi&gt;2&lt;/span&gt;&lt;span class=p&gt;]()&lt;/span&gt;
+&lt;span class=mi&gt;9&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Ce qui s'est passé est plutôt clair, python évalue toutes les lambdas qui font référence à la variable &lt;code&gt;i&lt;/code&gt; avec la dernière valeur qu'elle a prise...
 Et malheureusement, ce comportement est parfaitement normal pour une simple lambda expression. En effet, en python, les lambda expressions sont incapables de capturer les variables locales au moment de leur déclaration ! Dans notre exemple, tout se passe comme si python évaluait la lambda expression une fois la déclaration terminée. &lt;/p&gt;
 &lt;p&gt;Mais commment contourner ce problème, me demanderez-vous ?&lt;/p&gt;
 &lt;h2&gt;... Et comment les corriger&lt;/h2&gt;
 &lt;p&gt;Reprenons l'exemple plus haut.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
-&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
-    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=c1&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
+&lt;span class=n&gt;d&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{}&lt;/span&gt;
+&lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;i&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=nb&gt;range&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;10&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=c1&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
+    &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=k&gt;lambda&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;En réalité, dans la plupart des cas que j'ai rencontrés, j'avais besoin de garder un registre des "appelables" existants, et de leur dire pourquoi/par qui ils ont été appelés (grâce à un numéro ou à un nom). &lt;code&gt;d&lt;/code&gt; sert donc ici de registre dans la démonstration, et la lambda expression est ce fameux "appelable".
 Le rôle de &lt;code&gt;d&lt;/code&gt; est donc d'associer une clé à un "appelable".&lt;/p&gt;
 &lt;p&gt;Maintenant, voici une solution possible afin que chaque "appelable" recoive la valeur qui leur est associée.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;partial&lt;/span&gt;
-&lt;span class="c1"&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
-&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="c1"&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
-    &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;partial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=kn&gt;from&lt;/span&gt; &lt;span class=nn&gt;functools&lt;/span&gt; &lt;span class=kn&gt;import&lt;/span&gt; &lt;span class=n&gt;partial&lt;/span&gt;
+&lt;span class=c1&gt;# Déclarer un dictionnaire vide&lt;/span&gt;
+&lt;span class=n&gt;d&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=p&gt;{}&lt;/span&gt;
+&lt;span class=k&gt;for&lt;/span&gt; &lt;span class=n&gt;i&lt;/span&gt; &lt;span class=ow&gt;in&lt;/span&gt; &lt;span class=nb&gt;range&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=mi&gt;10&lt;/span&gt;&lt;span class=p&gt;):&lt;/span&gt;
+    &lt;span class=c1&gt;# Assigne à la clé i une lambda expression qui affiche i.&lt;/span&gt;
+    &lt;span class=n&gt;d&lt;/span&gt;&lt;span class=p&gt;[&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;]&lt;/span&gt; &lt;span class=o&gt;=&lt;/span&gt; &lt;span class=n&gt;partial&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=k&gt;lambda&lt;/span&gt; &lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;:&lt;/span&gt;&lt;span class=nb&gt;print&lt;/span&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;),&lt;/span&gt;&lt;span class=n&gt;i&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Un &lt;code&gt;partial&lt;/code&gt;, c'est un "appelable" qui prépare un appel de fonction. Par exemple, vous voulez capturer la valeur d'une variable locale à un instant t. Mais vous voulez appeler la fonction plus tard. Premier paramètre de partial: la fonction. Chaque argument supplémentaire de partial sera passé en argument à la fonction que vous voulez appeler à la fin. Vous pouvez aussi passez des arguments nommés, dans ce cas l'ordre n'a aucune importance (tant que la fonction à appeler est le premier argument de partial).&lt;/p&gt;
 &lt;p&gt;Un dessin vaut mieux qu'un long discours:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="How partial is used" src="../images/lambda_expressions_partial.png"&gt;&lt;/p&gt;
 &lt;p&gt;Voilà ! Maintenant, vous savez comment utiliser les lambda expressions et éviter les pièges !
-J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur &lt;a href="https://github.com/SteampunkIslande/blog/issues" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="GitHub"&gt;GitHub&lt;/a&gt; (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).&lt;/p&gt;</content><category term="Python"></category><category term="lambda"></category><category term="common issues"></category></entry></feed>
+J'espère que cet article vous aura été utile, et si vous avez des questions n'hésitez pas à ouvrir une issue sur &lt;a href="https://github.com/SteampunkIslande/blog/issues" referrerpolicy="no-referrer" rel="noopener noreferrer" target="_blank" title="GitHub"&gt;GitHub&lt;/a&gt;{target="_blank"} (C'est moins casse-pied que d'installer Disqus, peut-être plus tard).&lt;/p&gt;</content><category term="Python"></category><category term="lambda"></category><category term="common issues"></category></entry></feed>

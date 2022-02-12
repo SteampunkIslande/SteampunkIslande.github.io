@@ -22,19 +22,16 @@
 &lt;h3&gt;Numéro de téléphone français&lt;/h3&gt;
 &lt;p&gt;La première chose qui effraie la plupart des débutants, c'est la taille de certaines expressions régulières. Des dizaines de caractères à la suite, sans saut de ligne, qui, sans documentation, sont tout sauf explicites. Et au fond, même avec un bon entraînement, lire et comprendre une expression régulière que l'on n'a pas soi-même écrite peut être difficile.&lt;/p&gt;
 &lt;p&gt;Mais commençons ! Voici par exemple une expression régulière pour trouver un numéro de téléphone en France:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Décomposons cette regex. Entre parenthèses, on indique que l'on veut "capturer" le contenu du motif trouvé à l'intérieur. Ici, c'est &lt;code&gt;0[1-79]&lt;/code&gt;.
 Et pour expliquer ce motif, on a seulement besoin de comprendre les classes de caractères. Ici, &lt;code&gt;0[1-79]&lt;/code&gt; recherche littéralement un 0, suivi d'un nombre soit entre 1 et 7 (signifié par le tiret &lt;code&gt;-&lt;/code&gt;) ou encore un &lt;code&gt;9&lt;/code&gt;. Donc les crochets &lt;code&gt;[]&lt;/code&gt; permettent de trouver un caractère parmi ceux indiqués, avec la possibilité de donner des intervalles.&lt;/p&gt;
 &lt;p&gt;Exemple:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZ]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Va matcher n'importe quelle lettre, minuscule ou majuscule, mais sans accent. Pour ajouter quelques accents:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZéèêàù]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;[a-zAZéèêàù]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Maintenant que vous avez compris que &lt;code&gt;(0[1-79])&lt;/code&gt; capturait les deux premier chiffres d'un numéro de téléphone français, passons à la suite de l'expression.&lt;/p&gt;
 &lt;p&gt;Nous avons, après ce premier groupe de capture, &lt;code&gt;.?&lt;/code&gt;. Le point est un caractère spécial qui matche n'importe quel caractère (sauf les retours à la ligne).
 Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il signifie zéro ou un. Il s'écrit aussi &lt;code&gt;{0,1}&lt;/code&gt;, qui est la syntaxe complète des quantificateurs. Alors pourquoi chercher un caractère optionnel juste après les premiers chiffres ? Simplement parce que certaines personnes ajoutent un caractère tous les deux chiffres quand ils donnent leur numéro de téléphone. Certains ne séparent pas, d'autres mettent un point, d'autres encore un slash... Bref on pourrait aussi écrire &lt;code&gt;[/.]?&lt;/code&gt;, mais ici on veut prévoir tous les cas de figure. Notez ici qu'entre les crochets, pas besoin d'échapper le point. En effet, dans une classe de caractère, ajouter une telle "carte blanche" n'aurait aucun sens.&lt;/p&gt;
@@ -43,9 +40,8 @@ Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il
 &lt;p&gt;Et voilà comment interpréter une expression régulière !&lt;/p&gt;
 &lt;h3&gt;Adresse mail&lt;/h3&gt;
 &lt;p&gt;Autre exemple, pour une adresse électronique:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(\S+)@(\S+)\.(\S+)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(\S+)@(\S+)\.(\S+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Cette regex fait apparaître une méta séquence que je ne vous ai pas présenté plus haut, les espaces. Notez que &lt;code&gt;\s&lt;/code&gt; matche n'importe quel caractère d'espace (tabulation, espace, retour à la ligne, et autres caractères ésotériques qui peuvent vous donner des bugs invisibles ^^).&lt;/p&gt;
 &lt;p&gt;À l'inverse, &lt;code&gt;\S&lt;/code&gt; matche tout caractère qui n'est pas un espace. Donc cette regex n'exclut pas beaucoup d'adresses mail invalides, mais trouvera la plupart des adresses mail plausibles.&lt;/p&gt;
 &lt;p&gt;Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.&lt;/p&gt;
@@ -90,14 +86,12 @@ Toutes les adresses mail valides seront détectées par ce motif, mais tous les 
 &lt;p&gt;Pour commencer, vous pouvez "ancrer" votre expression régulière dans le texte à rechercher. &lt;/p&gt;
 &lt;p&gt;Pour cela, vous avez deux opérateurs: &lt;code&gt;^&lt;/code&gt; et &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Pour trouver un morceau de texte qui commence par votre motif:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;^Les chiens sont (.+)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;^Les chiens sont (.+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Pour trouver le motif ci-dessus, toutes les lignes commençant par &lt;code&gt;Les chiens sont&lt;/code&gt; vont être trouvées. Puis ce qui suit sera capturé dans le groupe 1, le motif étant la carte blanche, répétée autant de fois que possible.&lt;/p&gt;
 &lt;p&gt;De même, vous pouvez chercher un motif qui termine une ligne, dans ce cas:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;(.+) intelligents\.$
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
+&lt;p&gt; &lt;div class=highlight&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=p&gt;(&lt;/span&gt;&lt;span class=o&gt;.+&lt;/span&gt;&lt;span class=p&gt;)&lt;/span&gt;&lt;span class=w&gt; &lt;/span&gt;&lt;span class=nv&gt;intelligents&lt;/span&gt;\&lt;span class=o&gt;.&lt;/span&gt;&lt;span class=p&gt;$&lt;/span&gt;&lt;span class=w&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Dans cette situtation, toutes les lignes finissant par &lt;code&gt;inteeligents.&lt;/code&gt; seront trouvées, et ce qui précède sera capturé dans le groupe 1.&lt;/p&gt;
 &lt;p&gt;Pour finir, construire une expression régulière, c'est juste définir l'aspect d'un motif en utilisant les trois éléments vus plus haut: capturer ce qui vous intéresse, définir les valeurs possibles avec des classes de caractères, et quantifier ces dernières.&lt;/p&gt;
 &lt;p&gt;Exemple pour trouver dans un fichier de configuration, toutes les variables contenant &lt;code&gt;site&lt;/code&gt;:

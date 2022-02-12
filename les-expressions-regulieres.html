@@ -22,6 +22,9 @@
     <!-- Personal CSS for nice table -->
     <link href="https://steampunkislande.github.io/theme/css/tableau.css" rel="stylesheet">
 
+    <!-- CSS for markdown-fenced-blocks -->
+    <link href="https://steampunkislande.github.io/theme/css/code-tab.css" rel="stylesheet">
+
     <!-- Code highlight color scheme -->
     <link href="https://steampunkislande.github.io/theme/css/code_blocks/darkly.css" rel="stylesheet">
 
@@ -141,19 +144,16 @@
 <h3>Numéro de téléphone français</h3>
 <p>La première chose qui effraie la plupart des débutants, c'est la taille de certaines expressions régulières. Des dizaines de caractères à la suite, sans saut de ligne, qui, sans documentation, sont tout sauf explicites. Et au fond, même avec un bon entraînement, lire et comprendre une expression régulière que l'on n'a pas soi-même écrite peut être difficile.</p>
 <p>Mais commençons ! Voici par exemple une expression régulière pour trouver un numéro de téléphone en France:</p>
-<div class="highlight"><pre><span></span><code>(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code>(0[1-79]).?(\d{2}).?(\d{2}).?(\d{2}).?(\d{2})
+</code></pre></div></p>
 <p>Décomposons cette regex. Entre parenthèses, on indique que l'on veut "capturer" le contenu du motif trouvé à l'intérieur. Ici, c'est <code>0[1-79]</code>.
 Et pour expliquer ce motif, on a seulement besoin de comprendre les classes de caractères. Ici, <code>0[1-79]</code> recherche littéralement un 0, suivi d'un nombre soit entre 1 et 7 (signifié par le tiret <code>-</code>) ou encore un <code>9</code>. Donc les crochets <code>[]</code> permettent de trouver un caractère parmi ceux indiqués, avec la possibilité de donner des intervalles.</p>
 <p>Exemple:</p>
-<div class="highlight"><pre><span></span><code>[a-zAZ]
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code>[a-zAZ]
+</code></pre></div></p>
 <p>Va matcher n'importe quelle lettre, minuscule ou majuscule, mais sans accent. Pour ajouter quelques accents:</p>
-<div class="highlight"><pre><span></span><code>[a-zAZéèêàù]
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code>[a-zAZéèêàù]
+</code></pre></div></p>
 <p>Maintenant que vous avez compris que <code>(0[1-79])</code> capturait les deux premier chiffres d'un numéro de téléphone français, passons à la suite de l'expression.</p>
 <p>Nous avons, après ce premier groupe de capture, <code>.?</code>. Le point est un caractère spécial qui matche n'importe quel caractère (sauf les retours à la ligne).
 Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il signifie zéro ou un. Il s'écrit aussi <code>{0,1}</code>, qui est la syntaxe complète des quantificateurs. Alors pourquoi chercher un caractère optionnel juste après les premiers chiffres ? Simplement parce que certaines personnes ajoutent un caractère tous les deux chiffres quand ils donnent leur numéro de téléphone. Certains ne séparent pas, d'autres mettent un point, d'autres encore un slash... Bref on pourrait aussi écrire <code>[/.]?</code>, mais ici on veut prévoir tous les cas de figure. Notez ici qu'entre les crochets, pas besoin d'échapper le point. En effet, dans une classe de caractère, ajouter une telle "carte blanche" n'aurait aucun sens.</p>
@@ -162,9 +162,8 @@ Ensuite, nous avons un quantificateur. Celui-ci est le point d'interrogation. Il
 <p>Et voilà comment interpréter une expression régulière !</p>
 <h3>Adresse mail</h3>
 <p>Autre exemple, pour une adresse électronique:</p>
-<div class="highlight"><pre><span></span><code>(\S+)@(\S+)\.(\S+)
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code>(\S+)@(\S+)\.(\S+)
+</code></pre></div></p>
 <p>Cette regex fait apparaître une méta séquence que je ne vous ai pas présenté plus haut, les espaces. Notez que <code>\s</code> matche n'importe quel caractère d'espace (tabulation, espace, retour à la ligne, et autres caractères ésotériques qui peuvent vous donner des bugs invisibles ^^).</p>
 <p>À l'inverse, <code>\S</code> matche tout caractère qui n'est pas un espace. Donc cette regex n'exclut pas beaucoup d'adresses mail invalides, mais trouvera la plupart des adresses mail plausibles.</p>
 <p>Ci-dessous un tableau qui présente les méta séquences que j'utilise le plus (personnellement). Ce n'est pas du tout une liste exhaustive.</p>
@@ -209,14 +208,12 @@ Toutes les adresses mail valides seront détectées par ce motif, mais tous les 
 <p>Pour commencer, vous pouvez "ancrer" votre expression régulière dans le texte à rechercher. </p>
 <p>Pour cela, vous avez deux opérateurs: <code>^</code> et <code>$</code>.</p>
 <p>Pour trouver un morceau de texte qui commence par votre motif:</p>
-<div class="highlight"><pre><span></span><code>^Les chiens sont (.+)
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code>^Les chiens sont (.+)
+</code></pre></div></p>
 <p>Pour trouver le motif ci-dessus, toutes les lignes commençant par <code>Les chiens sont</code> vont être trouvées. Puis ce qui suit sera capturé dans le groupe 1, le motif étant la carte blanche, répétée autant de fois que possible.</p>
 <p>De même, vous pouvez chercher un motif qui termine une ligne, dans ce cas:</p>
-<div class="highlight"><pre><span></span><code>(.+) intelligents\.$
-</code></pre></div>
-
+<p> <div class=highlight><pre><span></span><code><span class=p>(</span><span class=o>.+</span><span class=p>)</span><span class=w> </span><span class=nv>intelligents</span>\<span class=o>.</span><span class=p>$</span><span class=w></span>
+</code></pre></div></p>
 <p>Dans cette situtation, toutes les lignes finissant par <code>inteeligents.</code> seront trouvées, et ce qui précède sera capturé dans le groupe 1.</p>
 <p>Pour finir, construire une expression régulière, c'est juste définir l'aspect d'un motif en utilisant les trois éléments vus plus haut: capturer ce qui vous intéresse, définir les valeurs possibles avec des classes de caractères, et quantifier ces dernières.</p>
 <p>Exemple pour trouver dans un fichier de configuration, toutes les variables contenant <code>site</code>:
