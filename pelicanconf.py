@@ -47,20 +47,21 @@ MARKDOWN = {
     "extensions": [
         "markdown_include.include",
         "markdown_link_attr_modifier",
-        "pymdownx.tabbed",
-        "pymdownx.superfences",
         "pymdownx.highlight",
+        "markdown_fenced_code_tabs",
     ],
     "extension_configs": {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
-        "markdown.extensions.extra": {},
-        "markdown.extensions.meta": {},
         "markdown_link_attr_modifier": {
             "new_tab": "on",
             "no_referrer": "external_only",
             "auto_title": "on",
         },
-        "pymdownx.superfences": {"preserve_tabs": True},
+        "markdown_fenced_code_tabs": {
+            "single_block_as_tab": False,
+            "active_class": "active",
+            "template": "default",
+        },
     },
     "output_format": "html5",
 }
